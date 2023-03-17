@@ -4,23 +4,37 @@ import './App.css';
 import Home from './routes/Home';
 import NotFound from './routes/NotFound';
 import AboutUs from './routes/AboutUs';
+import NavBar from './routes/NavBar';
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: (
       <div>
-        <Home />
+        <NavBar />
+        <header>
+          <h1>Home</h1>
+        </header>
+        <Outlet />
       </div>
     ),
-  },
-  {
-    path: '/aboutus',
-    element: (
-      <div>
-        <AboutUs />
-      </div>
-    ),
+    children: [
+      {
+        path: '/',
+        element: (
+          <div>
+            <Home />
+          </div>
+        ),
+      },
+      {
+        path: '/aboutus',
+        element: (
+          <div>
+            <AboutUs />
+          </div>
+        ),
+      },
+    ],
   },
   {
     path: '*',
