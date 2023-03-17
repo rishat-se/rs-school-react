@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component<{}, { searchValue: string }> {
-  state = { searchValue: '' };
+  constructor(props: {}) {
+    super(props);
+    this.state = { searchValue: localStorage.getItem('searchValue') || '' };
+  }
 
   handleChange(e: React.FormEvent<HTMLInputElement>) {
     this.setState({ searchValue: e.currentTarget.value });
@@ -10,12 +13,6 @@ class SearchBar extends Component<{}, { searchValue: string }> {
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-  }
-
-  componentDidMount(): void {
-    const searchValue = localStorage.getItem('searchValue');
-    this.setState({ searchValue: searchValue ? searchValue : '' });
-    console.log(`mounted with ${searchValue}`);
   }
 
   componentWillUnmount(): void {
