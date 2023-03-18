@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: (
       <div>
         <header>
-          <h1>Home</h1>
+          <h1>Home Mock</h1>
         </header>
         <NavBar />
         <Outlet />

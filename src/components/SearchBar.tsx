@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-class SearchBar extends Component<{}, { searchValue: string }> {
-  constructor(props: {}) {
+class SearchBar extends Component<object, { searchValue: string }> {
+  constructor(props: object) {
     super(props);
     this.state = { searchValue: localStorage.getItem('searchValue') || '' };
   }
