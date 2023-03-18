@@ -10,10 +10,10 @@ const router = createBrowserRouter([
   {
     element: (
       <div>
-        <NavBar />
         <header>
           <h1>Home</h1>
         </header>
+        <NavBar />
         <Outlet />
       </div>
     ),
