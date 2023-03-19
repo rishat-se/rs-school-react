@@ -9,29 +9,29 @@ type CardProps = {
 class Card extends Component<CardProps> {
   render() {
     return (
-      <div className="card">
+      <li className="card" aria-label="card">
         <img alt={`${this.props.card.name} image`} src={this.props.card.image} />
         <ul>
-          <li>
+          <li aria-label="character-property">
             name: <span>{this.props.card.name}</span>
           </li>
-          <li>
+          <li aria-label="character-property">
             status: <span>{this.props.card.status}</span>
           </li>
-          <li>
+          <li aria-label="character-property">
             gender: <span>{this.props.card.gender}</span>
           </li>
-          <li>
+          <li aria-label="character-property">
             species: <span>{this.props.card.species}</span>
           </li>
-          <li>
+          <li aria-label="character-property">
             origin: <span>{this.props.card.origin.name}</span>
           </li>
-          <li>
+          <li aria-label="character-property">
             location: <span>{this.props.card.location.name}</span>
           </li>
         </ul>
-      </div>
+      </li>
     );
   }
 }

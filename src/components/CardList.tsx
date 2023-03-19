@@ -6,7 +6,11 @@ import './CardList.css';
 class CardList extends Component {
   render() {
     const cardItems = cards.map((item) => <Card key={item.id} card={item} />);
-    return <div className="card-list">{cardItems}</div>;
+    return (
+      <ul className="card-list" aria-label="card-list">
+        {cardItems}
+      </ul>
+    );
   }
 }
 
