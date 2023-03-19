@@ -9,7 +9,7 @@ type CardProps = {
 class Card extends Component<CardProps> {
   render() {
     return (
-      <div key={this.props.card.id} className="card">
+      <div className="card">
         <img alt={`${this.props.card.name} image`} src={this.props.card.image} />
         <ul>
           <li>
