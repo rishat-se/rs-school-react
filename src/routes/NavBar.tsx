@@ -10,12 +10,12 @@ class NavBar extends Component {
         <h2 className="nav-items">Home</h2>
         <nav>
           <li className="nav-link">
-            <Link className="nav-link nav-items" to={`/`}>
+            <Link className="nav-link nav-items nav-btn" to={`/`}>
               Home
             </Link>
           </li>
           <li className="nav-link">
-            <Link className="nav-link nav-items" to={`aboutus`}>
+            <Link className="nav-link nav-items nav-btn" to={`aboutus`}>
               About Us
             </Link>
           </li>
