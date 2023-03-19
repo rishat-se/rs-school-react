@@ -9,7 +9,6 @@ class SearchBar extends Component<object, { searchValue: string }> {
 
   handleChange(e: React.FormEvent<HTMLInputElement>) {
     this.setState({ searchValue: e.currentTarget.value });
-    console.log(e.currentTarget.value);
   }
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -17,7 +16,6 @@ class SearchBar extends Component<object, { searchValue: string }> {
   }
 
   componentWillUnmount(): void {
-    console.log(`unmounted with ${this.state.searchValue}`);
     localStorage.setItem('searchValue', this.state.searchValue);
   }
 
