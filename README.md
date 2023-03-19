@@ -18,7 +18,7 @@ git checkout components
 npm install
 ```
 
-## Build images
+## Build application
 
 ```
 npm run build
@@ -30,25 +30,25 @@ npm run build
 npm run preview
 ```
 
-After starting app you can open it on port 4173
+After starting app you can open it on http://localhost:4173/
 
-or
+or in development mode:
 
 ```
 npm run dev
 ```
 
-After starting app you can open it on port 5173
+After starting app you can open it on http://localhost:5173/
 
 ## Running test
 
-with coverage report
+with coverage report:
 
 ```
 npm run test:coverage
 ```
 
-in watch mode without coverage report
+in watch mode without coverage report:
 
 ```
 npm run test
