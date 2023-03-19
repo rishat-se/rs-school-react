@@ -1,21 +1,21 @@
 
-
 .nav-bar {
     background-color: #4285f4;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 1rem;
-
+    align-items: center;
 }
 
-.nav-bar * {
+.nav-items {
     font-size: 1rem;
     color: white;
+    padding-inline: 2rem;
+    padding-block: 1rem;
 }
 
 .nav-link {
     list-style: none;
-    display: inline-block
+    display: inline-block;
 }
 

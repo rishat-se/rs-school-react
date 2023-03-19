@@ -9,10 +9,10 @@ import NavBar from './routes/NavBar';
 const router = createBrowserRouter([
   {
     element: (
-      <main>
+      <div>
         <NavBar />
         <Outlet />
-      </main>
+      </div>
     ),
     children: [
       {
@@ -36,9 +36,9 @@ const router = createBrowserRouter([
   {
     path: '*',
     element: (
-      <div>
+      <>
         <NotFound />
-      </div>
+      </>
     ),
   },
 ]);

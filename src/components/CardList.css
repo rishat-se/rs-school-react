@@ -3,5 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* gap: ; */
+  gap: 1rem;
+}
+
+.char-properties {
+  display: grid;
 }

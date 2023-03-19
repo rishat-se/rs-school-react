@@ -12,16 +12,14 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  background-color: #eae9ee;
 }
 
-main {
+.wrapper {
   max-width: 70rem;
   margin-block-start: 1rem;
-  margin-block-end: 6.125rem;
+  margin-block-end: 7rem;
   margin-inline: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 

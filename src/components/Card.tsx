@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CardData } from '../data/cards';
+import './Card.css';
 
 type CardProps = {
   card: CardData;
@@ -8,15 +9,27 @@ type CardProps = {
 class Card extends Component<CardProps> {
   render() {
     return (
-      <div key={this.props.card.id}>
+      <div key={this.props.card.id} className="card">
         <img alt={`${this.props.card.name} image`} src={this.props.card.image} />
         <ul>
-          <li>name: {this.props.card.name}</li>
-          <li>status: {this.props.card.status}</li>
-          <li>gender: {this.props.card.gender}</li>
-          <li>species: {this.props.card.species}</li>
-          <li>origin: {this.props.card.origin.name}</li>
-          <li>location: {this.props.card.location.name}</li>
+          <li>
+            name: <span>{this.props.card.name}</span>
+          </li>
+          <li>
+            status: <span>{this.props.card.status}</span>
+          </li>
+          <li>
+            gender: <span>{this.props.card.gender}</span>
+          </li>
+          <li>
+            species: <span>{this.props.card.species}</span>
+          </li>
+          <li>
+            origin: <span>{this.props.card.origin.name}</span>
+          </li>
+          <li>
+            location: <span>{this.props.card.location.name}</span>
+          </li>
         </ul>
       </div>
     );

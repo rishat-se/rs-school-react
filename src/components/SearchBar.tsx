@@ -27,7 +27,7 @@ class SearchBar extends Component<object, { searchValue: string }> {
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             onChange={(e) => this.handleChange(e)}
-            type="text"
+            type="search"
             value={this.state.searchValue}
           ></input>
           <button>Search</button>

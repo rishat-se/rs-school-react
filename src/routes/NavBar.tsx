@@ -6,14 +6,18 @@ class NavBar extends Component {
   render() {
     return (
       <header className="nav-bar">
-        <h1>RS-Shool React App</h1>
-        <h2>Home</h2>
+        <h1 className="nav-items">RS-Shool React App</h1>
+        <h2 className="nav-items">Home</h2>
         <nav>
           <li className="nav-link">
-            <Link to={`/`}>Home</Link>
+            <Link className="nav-link nav-items" to={`/`}>
+              Home
+            </Link>
           </li>
           <li className="nav-link">
-            <Link to={`aboutus`}>About Us</Link>
+            <Link className="nav-link nav-items" to={`aboutus`}>
+              About Us
+            </Link>
           </li>
         </nav>
       </header>
