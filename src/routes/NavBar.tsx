@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import LocationHeading from '../components/LocationHeading';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -7,15 +8,15 @@ class NavBar extends Component {
     return (
       <header className="nav-bar">
         <h1 className="nav-items">RS-Shool React App</h1>
-        <h2 className="nav-items">Home</h2>
+        <LocationHeading className="nav-items" />
         <nav>
           <li className="nav-link">
-            <Link className="nav-link nav-items nav-btn" to={`/`}>
+            <Link className="nav-link nav-items" to={`/`}>
               Home
             </Link>
           </li>
           <li className="nav-link">
-            <Link className="nav-link nav-items nav-btn" to={`aboutus`}>
+            <Link className="nav-link nav-items" to={`aboutus`}>
               About Us
             </Link>
           </li>

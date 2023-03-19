@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { withRouter, WithRouterProps } from './withRouter';
 
-class LocationHeading extends Component {
+const paths: { [key: string]: string } = {
+  ['/']: 'Home',
+  ['/aboutus']: 'About Us',
+};
+
+class LocationHeading extends Component<WithRouterProps & { className: string }> {
   render() {
     return (
-      <div>
-        <h2>Home</h2>
-      </div>
+      <>
+        <h2 className={this.props.className}>{paths[this.props.location.pathname]}</h2>
+      </>
     );
   }
 }
 
-//const LocationHeadingComponent = withRouter(LocationHeading);
-
-export default LocationHeading;
+export default withRouter(LocationHeading);
