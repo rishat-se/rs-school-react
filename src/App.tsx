@@ -9,13 +9,10 @@ import NavBar from './routes/NavBar';
 const router = createBrowserRouter([
   {
     element: (
-      <div>
-        <header>
-          <h1>Home Mock</h1>
-        </header>
+      <main>
         <NavBar />
         <Outlet />
-      </div>
+      </main>
     ),
     children: [
       {

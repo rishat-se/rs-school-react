@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SearchBar.css';
 
 class SearchBar extends Component<object, { searchValue: string }> {
   constructor(props: object) {
@@ -22,7 +23,7 @@ class SearchBar extends Component<object, { searchValue: string }> {
 
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             onChange={(e) => this.handleChange(e)}
