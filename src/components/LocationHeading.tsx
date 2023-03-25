@@ -3,6 +3,7 @@ import { withRouter, WithRouterProps } from '../utils/withRouter';
 
 const paths: { [key: string]: string } = {
   ['/']: 'Home',
+  ['/form']: 'Form',
   ['/aboutus']: 'About Us',
 };
 
