@@ -4,6 +4,7 @@ import Home from './routes/Home';
 import NotFound from './routes/NotFound';
 import AboutUs from './routes/AboutUs';
 import NavBar from './routes/NavBar';
+import Form from './routes/Form';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,14 @@ const router = createBrowserRouter([
         element: (
           <div>
             <Home />
+          </div>
+        ),
+      },
+      {
+        path: '/form',
+        element: (
+          <div>
+            <Form />
           </div>
         ),
       },
