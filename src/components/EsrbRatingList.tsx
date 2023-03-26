@@ -15,7 +15,7 @@ class EsrbRatingList extends Component {
       return (
         <div key={item}>
           <label>
-            <input type="checkbox" name="esrbRating" value={item}></input>
+            <input type="radio" name="esrbRating" value={item}></input>
             {item}
           </label>
         </div>
