@@ -20,4 +20,5 @@ body {
   margin-block-start: 1rem;
   margin-block-end: 7rem;
   margin-inline: 1.5rem;
+  width: 100%;
 }

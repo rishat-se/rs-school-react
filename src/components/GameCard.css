@@ -1,0 +1,18 @@
+.game-card {
+  background-color: white;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.game-card li {
+  list-style: none;
+}
+
+.game-card-property span {
+  color:#4285f4;
+  display: inline;
+}
+
+.game-card img {
+  width: 260px;
+}

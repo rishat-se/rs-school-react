@@ -11,12 +11,10 @@ class SimpleInput extends Component<SimpleInputProps> {
   render() {
     const { label, ...attributes } = this.props;
     return (
-      <div>
-        <label>
-          {label}
-          <input {...attributes}></input>
-        </label>
-      </div>
+      <>
+        <label className="control__label" htmlFor={attributes.name}>{`${label}:`}</label>
+        <input id={attributes.name} className="control__input" {...attributes}></input>
+      </>
     );
   }
 }

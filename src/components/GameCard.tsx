@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './GameCard.css';
+import './GameCard.css';
 
 export type GameCardData = {
   id: string;
@@ -34,7 +34,7 @@ class GameCard extends Component<GameCardProps> {
     } = this.props.gameCard;
     return (
       <li className="game-card" aria-label="game-card">
-        {/* <img alt={`${this.props.gameCard.gameName} image`} src={this.props.gameCard.imageFile} /> */}
+        <img alt={`${this.props.gameCard.gameName} image`} src={this.props.gameCard.imageFile} />
         <ul>
           <li aria-label="game-card-property">
             Game: <span>{gameName}</span>

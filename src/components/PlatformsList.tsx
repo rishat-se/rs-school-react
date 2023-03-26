@@ -21,18 +21,25 @@ class PlatformsList extends Component<{ errors: ControlErrors }> {
   render() {
     const platformsList = this.platforms.map((item) => {
       return (
-        <div key={item}>
-          <label>
-            <input type="checkbox" name="platforms" value={item}></input>
+        <div className="platform-item" key={item}>
+          <label className="platform-label">
+            <input
+              className="platform-checkbox"
+              type="checkbox"
+              name="platforms"
+              value={item}
+            ></input>
             {item}
           </label>
         </div>
       );
     });
     return (
-      <div className="platforms-list" aria-label="platforms-list">
-        <label>Platforms:</label>
-        {platformsList}
+      <div className="platforms-list control" aria-label="platforms-list">
+        <label htmlFor="platforms">Platforms:</label>
+        <div id="platforms" className="platform-items">
+          {platformsList}
+        </div>
         {this.props.errors.platforms && (
           <span className="error-msg">{this.props.errors.platforms}</span>
         )}

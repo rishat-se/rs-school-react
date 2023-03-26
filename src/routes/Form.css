@@ -1,3 +1,79 @@
 .error-msg {
     color: red;
 }
+
+.game-card-form{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* max-width: 45vw; */
+    margin-block: 1rem;
+    margin-inline: auto;
+    padding-block: 2rem;
+    padding-block: 1rem;
+}
+
+.game-card-wrapper h2 {
+    padding-block: 0.5rem;
+}
+
+.game-card-wrapper span {
+    font-size: 1rem;
+    padding-block: 0.2rem;
+}
+
+.game-card-wrapper input {
+    margin-inline: 1rem;
+    font-size: 1rem;
+}
+
+.game-card-wrapper label {
+    margin-inline: 1rem;
+}
+
+.control {
+    padding: 0.5rem;
+}
+
+.input-field {
+    padding: 0.3rem;
+}
+
+.platform-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.platform-item {
+    padding-inline: 0.5rem;
+}
+
+.esrb-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.esrb-item {
+    padding-inline: 0.5rem;
+}
+
+.engine-list select {
+    font-size: 1rem;
+}
+.game-card-wrapper button {
+    font-size: 1.1rem;
+    padding: 0.3rem
+}
+
+@media screen and (min-width: 50em) {
+    .game-card-wrapper form{
+        max-width: 60vw;    
+    }
+}
+  
+@media screen and (min-width: 60em) {
+    .game-card-wrapper form{
+        max-width: 45vw;    
+    }
+}

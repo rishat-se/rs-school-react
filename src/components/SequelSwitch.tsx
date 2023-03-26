@@ -4,7 +4,7 @@ import { ControlErrors } from '../routes/Form';
 class SequelSwitch extends Component<{ errors: ControlErrors }> {
   render() {
     return (
-      <div className="sequel-swicth" aria-label="sequel-switch">
+      <div className="sequel-swicth control" aria-label="sequel-switch">
         <label>Is sequel announced?:</label>
         <div>
           <label>

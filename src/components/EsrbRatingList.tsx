@@ -14,7 +14,7 @@ class EsrbRatingList extends Component<{ errors: ControlErrors }> {
   render() {
     const esrbRatingList = this.esrbRatingList.map((item) => {
       return (
-        <div key={item}>
+        <div key={item} className="esrb-item">
           <label>
             <input type="radio" name="esrbRating" value={item}></input>
             {item}
@@ -24,9 +24,9 @@ class EsrbRatingList extends Component<{ errors: ControlErrors }> {
     });
 
     return (
-      <div className="esrb-rating-list" aria-label="esrb-rating-list">
+      <div className="esrb-rating-list control" aria-label="esrb-rating-list">
         <label>ESRB Rating:</label>
-        {esrbRatingList}
+        <div className="esrb-items">{esrbRatingList}</div>
         {this.props.errors.esrbRating && (
           <span className="error-msg">{this.props.errors.esrbRating}</span>
         )}

@@ -22,11 +22,11 @@ class EngineList extends Component<{ errors: ControlErrors }> {
     ));
 
     return (
-      <div className="engine-list" aria-label="engine-list">
-        <label>
-          Engine:
-          <select name="engine">{engineList}</select>
-        </label>
+      <div className="engine-list control" aria-label="engine-list">
+        <label htmlFor="engine">Engine:</label>
+        <select id="engine" name="engine">
+          {engineList}
+        </select>
         {this.props.errors.engine && <span className="error-msg">{this.props.errors.engine}</span>}
       </div>
     );

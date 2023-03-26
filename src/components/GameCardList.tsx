@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GameCard, { GameCardData } from './GameCard';
-// import './GameCardList.css';
+import './GameCardList.css';
 
 type GameCardListProps = {
   gameCardList: GameCardData[];
@@ -12,7 +12,7 @@ class GameCardList extends Component<GameCardListProps> {
       <GameCard key={gameCard.id} gameCard={gameCard} />
     ));
     return (
-      <ul className="card-list" aria-label="card-list">
+      <ul className="game-card-list" aria-label="game-card-list">
         {gameCardItems}
       </ul>
     );

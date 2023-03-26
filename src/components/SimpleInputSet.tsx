@@ -27,16 +27,11 @@ class SimpleInputSet extends Component<{ errors: ControlErrors }> {
       name: 'firstRelease',
       type: 'date',
     },
-    {
-      label: 'Load Thumbnail',
-      name: 'imageFile',
-      type: 'file',
-    },
   ];
   render() {
     return this.simpleInputs.map((item) => {
       return (
-        <div key={item.name}>
+        <div key={item.name} className="control">
           <SimpleInput {...item} />
           {this.props.errors[item.name] && (
             <span className="error-msg">{this.props.errors[item.name]}</span>
