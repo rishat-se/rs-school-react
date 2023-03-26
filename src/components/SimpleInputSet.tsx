@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { ControlErrors } from '../routes/Form';
 import SimpleInput, { SimpleInputProps } from './SimpleInput';
 
-class SimpleInputSet extends Component {
+class SimpleInputSet extends Component<{ errors: ControlErrors }> {
   readonly simpleInputs: SimpleInputProps[] = [
     {
       label: 'Game',
-      name: 'game',
+      name: 'gameName',
       type: 'text',
       placeholder: 'Enter Game Name',
     },
@@ -33,7 +34,16 @@ class SimpleInputSet extends Component {
     },
   ];
   render() {
-    return this.simpleInputs.map((item) => <SimpleInput key={item.name} {...item} />);
+    return this.simpleInputs.map((item) => {
+      return (
+        <div key={item.name}>
+          <SimpleInput {...item} />
+          {this.props.errors[item.name] && (
+            <span className="error-msg">{this.props.errors[item.name]}</span>
+          )}
+        </div>
+      );
+    });
   }
 }
 

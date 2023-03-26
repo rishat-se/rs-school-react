@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { ControlErrors } from '../routes/Form';
 
-class PlatformsList extends Component {
+class PlatformsList extends Component<{ errors: ControlErrors }> {
   readonly platforms = [
     'Android',
     'iOS',
@@ -32,6 +33,9 @@ class PlatformsList extends Component {
       <div className="platforms-list" aria-label="platforms-list">
         <label>Platforms:</label>
         {platformsList}
+        {this.props.errors.platforms && (
+          <span className="error-msg">{this.props.errors.platforms}</span>
+        )}
       </div>
     );
   }

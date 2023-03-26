@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
+import { ControlErrors } from '../routes/Form';
 
-class SequelSwitch extends Component {
+class SequelSwitch extends Component<{ errors: ControlErrors }> {
   render() {
     return (
       <div className="sequel-swicth" aria-label="sequel-switch">
         <label>Is sequel announced?:</label>
         <div>
           <label>
-            <input type="radio" name="isSequelAnnounced" value="yes"></input>
+            <input type="radio" name="isSequelAnnounced" value="Yes"></input>
             Yes
           </label>
         </div>
         <div>
           <label>
-            <input type="radio" name="isSequelAnnounced" value="no"></input>
+            <input type="radio" name="isSequelAnnounced" value="No"></input>
             No
           </label>
         </div>
+        {this.props.errors.isSequelAnnounced && (
+          <span className="error-msg">{this.props.errors.isSequelAnnounced}</span>
+        )}
       </div>
     );
   }

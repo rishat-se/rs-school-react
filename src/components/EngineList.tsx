@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { ControlErrors } from '../routes/Form';
 
-class EngineList extends Component {
+class EngineList extends Component<{ errors: ControlErrors }> {
   readonly engineList = [
     'Unreal',
     'Unity',
@@ -26,6 +27,7 @@ class EngineList extends Component {
           Engine:
           <select name="engine">{engineList}</select>
         </label>
+        {this.props.errors.engine && <span className="error-msg">{this.props.errors.engine}</span>}
       </div>
     );
   }

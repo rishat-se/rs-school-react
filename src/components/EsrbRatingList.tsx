@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { ControlErrors } from '../routes/Form';
 
-class EsrbRatingList extends Component {
+class EsrbRatingList extends Component<{ errors: ControlErrors }> {
   readonly esrbRatingList = [
     'Everyone',
     'Everyone 10+',
@@ -26,6 +27,9 @@ class EsrbRatingList extends Component {
       <div className="esrb-rating-list" aria-label="esrb-rating-list">
         <label>ESRB Rating:</label>
         {esrbRatingList}
+        {this.props.errors.esrbRating && (
+          <span className="error-msg">{this.props.errors.esrbRating}</span>
+        )}
       </div>
     );
   }
