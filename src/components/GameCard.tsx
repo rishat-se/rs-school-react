@@ -6,7 +6,7 @@ export type GameCardData = {
   gameName: string;
   developer: string;
   publisher: string;
-  firstRelease: Date;
+  firstRelease: string;
   engine: string;
   platforms: string[];
   esrbRating: string;
@@ -22,30 +22,43 @@ type GameCardProps = {
 
 class GameCard extends Component<GameCardProps> {
   render() {
+    const {
+      gameName,
+      developer,
+      publisher,
+      firstRelease,
+      engine,
+      platforms,
+      esrbRating,
+      isSequelAnnounced,
+    } = this.props.gameCard;
     return (
       <li className="game-card" aria-label="game-card">
-        <img alt={`${this.props.gameCard.gameName} image`} src={this.props.gameCard.imageFile} />
+        {/* <img alt={`${this.props.gameCard.gameName} image`} src={this.props.gameCard.imageFile} /> */}
         <ul>
           <li aria-label="game-card-property">
-            Game: <span>{this.props.gameCard.gameName}</span>
+            Game: <span>{gameName}</span>
           </li>
           <li aria-label="game-card-property">
-            Developer: <span>{this.props.gameCard.developer}</span>
+            Developer: <span>{developer}</span>
           </li>
           <li aria-label="game-card-property">
-            Publisher: <span>{this.props.gameCard.publisher}</span>
+            Publisher: <span>{publisher}</span>
           </li>
           <li aria-label="game-card-property">
-            First Relaase: <span>{this.props.gameCard.firstRelease.getDate()}</span>
+            First Relaase: <span>{firstRelease}</span>
           </li>
           <li aria-label="game-card-property">
-            Game Engine: <span>{this.props.gameCard.engine}</span>
+            Game Engine: <span>{engine}</span>
           </li>
           <li aria-label="game-card-property">
-            Platforms: <span>{this.props.gameCard.platforms}</span>
+            Platforms: <span>{platforms}</span>
           </li>
           <li aria-label="game-card-property">
-            ESRB Rating: <span>{this.props.gameCard.esrbRating}</span>
+            ESRB Rating: <span>{esrbRating}</span>
+          </li>
+          <li aria-label="game-card-property">
+            Is sequel announced?: <span>{isSequelAnnounced}</span>
           </li>
         </ul>
       </li>

@@ -7,12 +7,9 @@ import SequelSwitch from '../components/SequelSwitch';
 import SimpleInputSet from '../components/SimpleInputSet';
 import controlValuesRules, { ControlValueRule } from '../validator/controlValuesRules';
 import validate from '../validator/validate';
+import { v4 as uuidv4 } from 'uuid';
 import './Form.css';
-
-// export type ControlError = {
-//   name: string;
-//   error: string;
-// };
+import GameCardList from '../components/GameCardList';
 
 export type ControlValues = Partial<GameCardData>;
 export type ControlErrors = Partial<GameCardData>;
@@ -31,8 +28,14 @@ class Form extends React.Component<{}> {
     if (this.formRef.current !== null) {
       const controlValues = this.getFormValues(this.formRef.current, controlValuesRules);
       const newControlErrors = validate(controlValues, controlValuesRules);
-      this.setState({ controlErrors: newControlErrors });
-      //      this.addGameCard(gameCard);
+      console.log(controlValues);
+      if (Object.keys(newControlErrors).length) {
+        this.setState({ controlErrors: newControlErrors });
+      } else {
+        this.addGameCard(controlValues);
+        alert('Success: new game added');
+        this.formRef.current.reset();
+      }
     }
   }
 
@@ -46,6 +49,7 @@ class Form extends React.Component<{}> {
           case 'switcher':
           case 'file':
           case 'date':
+          case 'selector':
             controlValues = { ...controlValues, [control.name]: formRef[control.name].value };
             break;
           case 'checkbox':
@@ -65,22 +69,28 @@ class Form extends React.Component<{}> {
     return controlValues;
   }
 
-  private addGameCard(gameCard: GameCardData) {
-    const newGameCardList = this.state.gameCardList.concat([gameCard]);
+  private addGameCard(controlValues: ControlValues) {
+    const newGameCard = { id: uuidv4(), ...controlValues };
+    const imageFile = newGameCard.imageFile;
+    // const image = URL.createObjectURL(imageFile);
+    const newGameCardList = this.state.gameCardList.concat([newGameCard as GameCardData]);
     this.setState({ gameCardList: newGameCardList });
   }
 
   render() {
     const { controlErrors } = this.state;
     return (
-      <form ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
-        <SimpleInputSet errors={controlErrors} />
-        <EngineList errors={controlErrors} />
-        <PlatformsList errors={controlErrors} />
-        <EsrbRatingList errors={controlErrors} />
-        <SequelSwitch errors={controlErrors} />
-        <button>Create</button>
-      </form>
+      <div>
+        <form ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
+          <SimpleInputSet errors={controlErrors} />
+          <EngineList errors={controlErrors} />
+          <PlatformsList errors={controlErrors} />
+          <EsrbRatingList errors={controlErrors} />
+          <SequelSwitch errors={controlErrors} />
+          <button>Create</button>
+        </form>
+        <GameCardList gameCardList={this.state.gameCardList} />
+      </div>
     );
   }
 }

@@ -30,6 +30,11 @@ const controlValuesRules: ControlValueRule[] = [
     mandatory: { isMandatory: true, errorMessage: 'Please enter first release date' },
   },
   {
+    name: 'engine',
+    controlType: 'selector',
+    mandatory: { isMandatory: true, errorMessage: 'Please choose game engine' },
+  },
+  {
     name: 'platforms',
     controlType: 'checkbox',
     mandatory: { isMandatory: true, errorMessage: 'Please select at least one platform' },

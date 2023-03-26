@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import GameCard, { GameCardData } from './GameCard';
 // import './GameCardList.css';
 
-class GameCardList extends Component<{this.props.gameCard}> {
+type GameCardListProps = {
+  gameCardList: GameCardData[];
+};
+
+class GameCardList extends Component<GameCardListProps> {
   render() {
-    const GameCardItems = cards.map((item) => <Card key={item.id} card={item} />);
+    const gameCardItems = this.props.gameCardList.map((gameCard) => (
+      <GameCard key={gameCard.id} gameCard={gameCard} />
+    ));
     return (
       <ul className="card-list" aria-label="card-list">
-        {cardItems}
+        {gameCardItems}
       </ul>
     );
   }
 }
 
-export default CardList;
+export default GameCardList;
