@@ -1,36 +1,49 @@
 import React, { ReactHTMLElement } from 'react';
-import CardList from '../components/CardList';
-import GameCard from '../components/GameCard';
-import SearchBar from '../components/SearchBar';
-import GameCardType from '../types/GameCardType';
+import EngineList from '../components/EngineList';
+import EsrbRatingList from '../components/EsrbRatingList';
+import GameCard, { GameCardData } from '../components/GameCard';
+import PlatformsList from '../components/PlatformsList';
 
 class Form extends React.Component<{}> {
   constructor(props: {}) {
     super(props);
-    this.myRef = React.createRef();
+    this.state = { gameCardList: [] };
+    this.formRef = React.createRef();
   }
-  myRef: React.RefObject<HTMLInputElement>;
+  state: { gameCardList: GameCardData[] };
+  formRef: React.RefObject<HTMLFormElement>;
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (this.myRef.current !== null) {
-      this.myRef.current.value = '';
-    }
+    // if (this.formRef.current !== null) {
+    console.log(this.formRef.current?.gameName.value);
+    console.log(this.formRef.current?.developer.value);
+    console.log(this.formRef.current?.publisher.value);
+    console.log(this.formRef.current?.firstRelease.value);
+    console.log(this.formRef.current?.engine.value);
+    console.log(this.formRef.current?.platforms.value);
+    console.log(this.formRef.current?.esrbRating.value);
+    console.log(Object.keys(this.formRef.current?.esrbRating['0']));
+    console.log(this.formRef.current?.esrbRating['1'].checked);
+    console.log(this.formRef.current?.imageFile.value);
+    //      this.addGameCard(gameCard);
+    // }
+  }
+
+  private addGameCard(gameCard: GameCardData) {
+    const newGameCardList = this.state.gameCardList.concat([gameCard]);
+    this.setState({ gameCardList: newGameCardList });
   }
 
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
         <div>
           <label>
             Game:
             <input
-              ref={this.myRef}
-              onChange={() => {
-                if (this.myRef.current !== null) {
-                  console.log(this.myRef.current.value);
-                }
-              }}
+              // ref={this.gameNameRef}
+              name="gameName"
               type="text"
               placeholder="Enter Game Name"
             ></input>
@@ -39,25 +52,42 @@ class Form extends React.Component<{}> {
         <div>
           <label>
             Developer:
-            <input type="text" placeholder="Enter Game Developer Name"></input>
+            <input
+              // ref={this.developerRef}
+              name="developer"
+              type="text"
+              placeholder="Enter Game Developer Name"
+            ></input>
           </label>
         </div>
         <div>
           <label>
             Publisher:
-            <input type="text" placeholder="Enter Game Publisher Name"></input>
+            <input
+              // ref={this.publisherRef}
+              name="publisher"
+              type="text"
+              placeholder="Enter Game Publisher Name"
+            ></input>
           </label>
         </div>
         <div>
           <label>
             First Release:
-            <input type="date"></input>
+            <input
+              // ref={this.firstReleaseRef}
+              name="firstRelease"
+              type="date"
+            ></input>
           </label>
         </div>
-        <div>
+        {/* <div>
           <label>
             Engine:
-            <select>
+            <select
+              // ref={this.engineRef}
+              name="engine"
+            >
               <option value="Unreal">Unreal</option>
               <option value="Unity">Unity</option>
               <option value="Source">Source</option>
@@ -70,119 +100,126 @@ class Form extends React.Component<{}> {
               <option value="Clausewitz">Clausewitz</option>
             </select>
           </label>
-        </div>
-        <div>
+        </div> */}
+        <EngineList />
+        <PlatformsList />
+        <EsrbRatingList />
+        {/* <div>
           <label>Platforms:</label>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms" value="Android"></input>
               Android
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms" value="iOS"></input>
               iOS
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               iPadOS
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Linux
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               MacOS
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Nintendo Switch
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Playstation 3
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Playstation 4
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Playstation 5
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Xbox 360
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Xbox One
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox"></input>
+              <input type="checkbox" name="platforms"></input>
               Xbox Series X/S
             </label>
           </div>
           <div>
             <label>
-              <input type="checkbox" defaultValue="default"></input>
+              <input type="checkbox" name="platforms"></input>
               Windows
             </label>
           </div>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <label>ESRB Rating:</label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Everyone
           </label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Everyone 10+
           </label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Teen
           </label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Mature 17+
           </label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Adults Only 18+
           </label>
           <label>
-            <input type="radio" name="esrb-rating"></input>
+            <input type="radio" name="esrbRating"></input>
             Rating Pending
           </label>
-        </div>
+        </div> */}
         <div>
           <label>
             load thumbnail
-            <input type="file"></input>
+            <input
+              // ref={this.imageFile}
+              name="imageFile"
+              type="file"
+            ></input>
           </label>
         </div>
         <button>Create</button>
