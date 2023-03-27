@@ -18,7 +18,7 @@ export type ControlErrors = Partial<GameCardData>;
 class Form extends React.Component<{}> {
   constructor(props: {}) {
     super(props);
-    this.state = { gameCardList: [], controlErrors: [] };
+    this.state = { gameCardList: [], controlErrors: {} };
     this.formRef = React.createRef();
     this.fileRef = React.createRef();
   }
@@ -32,7 +32,6 @@ class Form extends React.Component<{}> {
     if (curFormRef !== null) {
       const controlValues = this.getFormValues(curFormRef, controlValuesRules);
       const newControlErrors = validate(controlValues, controlValuesRules);
-      console.log(controlValues);
       this.setState({ controlErrors: newControlErrors });
       if (Object.keys(newControlErrors).length === 0) {
         if (curFormRef.imageFile !== null && curFormRef.imageFile.files !== null) {
@@ -41,7 +40,7 @@ class Form extends React.Component<{}> {
         }
         this.addGameCard(controlValues);
         alert('Success: new game added');
-        // curFormRef.reset();
+        curFormRef.reset();
       }
     }
   }
@@ -79,14 +78,8 @@ class Form extends React.Component<{}> {
   private addGameCard(controlValues: ControlValues) {
     const newGameCard = { id: uuidv4(), ...controlValues };
     const imageFile = newGameCard.imageFile;
-    // const image = URL.createObjectURL(imageFile);
     const newGameCardList = this.state.gameCardList.concat([newGameCard as GameCardData]);
     this.setState({ gameCardList: newGameCardList });
-  }
-
-  handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.files);
-    console.log(this.fileRef);
   }
 
   render() {
@@ -101,7 +94,6 @@ class Form extends React.Component<{}> {
           <EsrbRatingList errors={controlErrors} />
           <SequelSwitch errors={controlErrors} />
           <ImageFile errors={controlErrors} />
-          {/* <input ref={this.fileRef} type="file" onChange={(e) => this.handleFileChange(e)}></input> */}
           <button>Create</button>
         </form>
         <GameCardList gameCardList={this.state.gameCardList} />

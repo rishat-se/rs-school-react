@@ -13,7 +13,12 @@ class SimpleInput extends Component<SimpleInputProps> {
     return (
       <>
         <label className="control__label" htmlFor={attributes.name}>{`${label}:`}</label>
-        <input id={attributes.name} className="control__input" {...attributes}></input>
+        <input
+          id={attributes.name}
+          className="control__input"
+          aria-label={attributes.name}
+          {...attributes}
+        ></input>
       </>
     );
   }
