@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import { ControlErrors } from '../routes/Form';
+import { engines } from '../constants/formConstants';
+import { InputProps } from '../types/InputProps';
 
-class EngineList extends Component<{ errors: ControlErrors }> {
-  readonly engineList = [
-    'Unreal',
-    'Unity',
-    'Source',
-    'Cryengine',
-    'Gamebryo',
-    'IW',
-    'Anvil',
-    'id Tech',
-    'Essence',
-    'Clausewitz',
-  ];
+class EngineList extends Component<InputProps> {
   render() {
-    const engineList = this.engineList.map((item) => (
+    const { label, inputRef, name, errors, ...attributes } = this.props;
+
+    const engineList = engines.map((item) => (
       <option key={item} value={item}>
         {item}
       </option>
@@ -23,11 +14,17 @@ class EngineList extends Component<{ errors: ControlErrors }> {
 
     return (
       <div className="engine-list control" aria-label="engine-list">
-        <label htmlFor="engine">Engine:</label>
-        <select id="engine" name="engine">
+        <label htmlFor="engine">{label}:</label>
+        <select
+          id={name}
+          ref={inputRef as React.RefObject<any>}
+          className="control__input"
+          aria-label={name}
+          {...attributes}
+        >
           {engineList}
         </select>
-        {this.props.errors.engine && <span className="error-msg">{this.props.errors.engine}</span>}
+        {errors.engine && <span className="error-msg">{errors.engine}</span>}
       </div>
     );
   }

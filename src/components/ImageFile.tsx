@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { ControlErrors } from '../routes/Form';
+import { InputProps } from '../types/InputProps';
 
-class ImageFile extends Component<{ errors: ControlErrors }> {
+class ImageFile extends Component<InputProps> {
   render() {
-    const { errors } = this.props;
+    const { label, inputRef, name, errors, ...attributes } = this.props;
+
     return (
       <div className="control">
         <div>
-          <label htmlFor="imageFile">Load Thumbnail:</label>
-          <input id="imageFile" type="file" name="imageFile"></input>
+          <label htmlFor={name}>{label}:</label>
+          <input ref={inputRef} id={name} type="file" name={name}></input>
         </div>
-        {this.props.errors['imageFile'] && <span className="error-msg">{errors['imageFile']}</span>}
+        {errors.imageFile && <span className="error-msg">{errors.imageFile}</span>}
       </div>
     );
   }

@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
+import { esrbRatings } from '../constants/formConstants';
 import { ControlErrors } from '../routes/Form';
+import { InputProps } from '../types/InputProps';
 
-class EsrbRatingList extends Component<{ errors: ControlErrors }> {
-  readonly esrbRatingList = [
-    'Everyone',
-    'Everyone 10+',
-    'Teen',
-    'Mature 17+',
-    'Adults Only 18+',
-    'Rating Pending',
-  ];
-
+class EsrbRatingList extends Component<InputProps> {
   render() {
-    const esrbRatingList = this.esrbRatingList.map((item) => {
+    const { label, inputRefs, name, errors, ...attributes } = this.props;
+
+    const esrbRatingList = esrbRatings.map((item, i) => {
       return (
         <div key={item} className="esrb-item">
           <label>
-            <input type="radio" name="esrbRating" value={item}></input>
+            {inputRefs && <input ref={inputRefs[i]} type="radio" name={name} value={item}></input>}
             {item}
           </label>
         </div>
@@ -25,11 +20,9 @@ class EsrbRatingList extends Component<{ errors: ControlErrors }> {
 
     return (
       <div className="esrb-rating-list control" aria-label="esrb-rating-list">
-        <label>ESRB Rating:</label>
+        <label>{label}:</label>
         <div className="esrb-items">{esrbRatingList}</div>
-        {this.props.errors.esrbRating && (
-          <span className="error-msg">{this.props.errors.esrbRating}</span>
-        )}
+        {errors.esrbRating && <span className="error-msg">{errors.esrbRating}</span>}
       </div>
     );
   }
