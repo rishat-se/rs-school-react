@@ -12,7 +12,6 @@ export type GameCardData = {
   esrbRating: string;
   isSequelAnnounced: string;
   imageFile: string;
-  [key: string]: any;
 };
 
 type GameCardProps = {

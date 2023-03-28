@@ -10,12 +10,12 @@ class DateInput extends Component<InputProps> {
         <input
           id={name}
           type="date"
-          ref={inputRef as React.RefObject<any>}
+          ref={inputRef}
           className="control__input"
           aria-label={name}
           {...attributes}
         />
-        {errors[name] && <span className="error-msg">{errors[name]}</span>}
+        {errors.firstRelease && <span className="error-msg">{errors.firstRelease}</span>}
       </>
     );
   }

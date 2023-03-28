@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { InputProps } from '../types/InputProps';
+import { GameCardData } from './GameCard';
 
 class TextInput extends Component<InputProps> {
   render() {
@@ -15,7 +16,9 @@ class TextInput extends Component<InputProps> {
           type="text"
           {...attributes}
         />
-        {errors[name] && <span className="error-msg">{errors[name]}</span>}
+        {errors[name as keyof GameCardData] && (
+          <span className="error-msg">{errors[name as keyof GameCardData]}</span>
+        )}
       </>
     );
   }

@@ -1,11 +1,11 @@
-import React, { ReactHTMLElement } from 'react';
+import React from 'react';
 import EngineList from '../components/EngineList';
 import EsrbRatingList from '../components/EsrbRatingList';
 import { GameCardData } from '../components/GameCard';
 import GameCardList from '../components/GameCardList';
 import PlatformsList from '../components/PlatformsList';
 import SequelSwitch from '../components/SequelSwitch';
-import controlValuesRules, { ControlValueRule } from '../validator/controlValuesRules';
+import controlValuesRules from '../validator/controlValuesRules';
 import validate from '../validator/validate';
 import { v4 as uuidv4 } from 'uuid';
 import './Form.css';
@@ -15,7 +15,10 @@ import DateInput from '../components/DateInput';
 import { esrbRatings, platforms } from '../constants/formConstants';
 
 export type ControlValues = Partial<GameCardData>;
-export type ControlErrors = Partial<GameCardData>;
+export type ControlErrors = {
+  [Property in keyof GameCardData]?: string;
+};
+
 type ControlRefs = {
   gameName: React.RefObject<HTMLInputElement>;
   developer: React.RefObject<HTMLInputElement>;
@@ -28,8 +31,8 @@ type ControlRefs = {
   imageFile: React.RefObject<HTMLInputElement>;
 };
 
-class Form extends React.Component<{}> {
-  constructor(props: {}) {
+class Form extends React.Component<object> {
+  constructor(props: object) {
     super(props);
     this.state = { gameCardList: [], controlErrors: {} };
     this.formRef = React.createRef();
@@ -52,7 +55,7 @@ class Form extends React.Component<{}> {
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const imageFileRef = this.controlRefs.imageFile.current;
     e.preventDefault();
-    const controlValues = this.getFormValues(this.controlRefs, controlValuesRules);
+    const controlValues = this.getFormValues(this.controlRefs);
     const newControlErrors = validate(controlValues, controlValuesRules);
     this.setState({ controlErrors: newControlErrors });
     if (Object.keys(newControlErrors).length === 0) {
@@ -68,8 +71,8 @@ class Form extends React.Component<{}> {
     }
   }
 
-  private getFormValues(controlRefs: ControlRefs, controlValuesRules: ControlValueRule[]) {
-    let controlValues: ControlValues = {};
+  private getFormValues(controlRefs: ControlRefs) {
+    const controlValues: ControlValues = {};
     controlValues.gameName = controlRefs.gameName.current ? controlRefs.gameName.current.value : '';
     controlValues.developer = controlRefs.developer.current
       ? controlRefs.developer.current.value
@@ -100,7 +103,6 @@ class Form extends React.Component<{}> {
 
   private addGameCard(controlValues: ControlValues) {
     const newGameCard = { id: uuidv4(), ...controlValues };
-    const imageFile = newGameCard.imageFile;
     const newGameCardList = this.state.gameCardList.concat([newGameCard as GameCardData]);
     this.setState({ gameCardList: newGameCardList });
   }
@@ -140,7 +142,7 @@ class Form extends React.Component<{}> {
           />
           <EngineList
             label="Engine"
-            inputRef={this.controlRefs.engine}
+            selectRef={this.controlRefs.engine}
             name="engine"
             errors={controlErrors}
           />

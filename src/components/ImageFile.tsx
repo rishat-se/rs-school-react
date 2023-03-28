@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { ControlErrors } from '../routes/Form';
 import { InputProps } from '../types/InputProps';
 
 class ImageFile extends Component<InputProps> {
   render() {
-    const { label, inputRef, name, errors, ...attributes } = this.props;
+    const { label, inputRef, name, errors } = this.props;
 
     return (
       <div className="control">

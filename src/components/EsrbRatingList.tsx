@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { esrbRatings } from '../constants/formConstants';
-import { ControlErrors } from '../routes/Form';
 import { InputProps } from '../types/InputProps';
 
 class EsrbRatingList extends Component<InputProps> {
   render() {
-    const { label, inputRefs, name, errors, ...attributes } = this.props;
+    const { label, inputRefs, name, errors } = this.props;
 
     const esrbRatingList = esrbRatings.map((item, i) => {
       return (

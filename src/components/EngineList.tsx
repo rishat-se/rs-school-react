@@ -4,7 +4,7 @@ import { InputProps } from '../types/InputProps';
 
 class EngineList extends Component<InputProps> {
   render() {
-    const { label, inputRef, name, errors, ...attributes } = this.props;
+    const { label, selectRef, name, errors, ...attributes } = this.props;
 
     const engineList = engines.map((item) => (
       <option key={item} value={item}>
@@ -17,7 +17,7 @@ class EngineList extends Component<InputProps> {
         <label htmlFor="engine">{label}:</label>
         <select
           id={name}
-          ref={inputRef as React.RefObject<any>}
+          ref={selectRef}
           className="control__input"
           aria-label={name}
           {...attributes}

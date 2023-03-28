@@ -4,7 +4,7 @@ import { InputProps } from '../types/InputProps';
 
 class PlatformsList extends Component<InputProps> {
   render() {
-    const { label, inputRefs, name, errors, ...attributes } = this.props;
+    const { label, inputRefs, name, errors } = this.props;
 
     const platformsList = platforms.map((item, i) => {
       return (
@@ -26,7 +26,7 @@ class PlatformsList extends Component<InputProps> {
     });
     return (
       <div className="platforms-list control" aria-label="platforms-list">
-        <label htmlFor="platforms">Platforms:</label>
+        <label htmlFor="platforms">{label}:</label>
         <div id={name} className="platform-items">
           {platformsList}
         </div>

@@ -3,7 +3,7 @@ import { InputProps } from '../types/InputProps';
 
 class SequelSwitch extends Component<InputProps> {
   render() {
-    const { label, inputRefs, name, errors, ...attributes } = this.props;
+    const { label, inputRefs, name, errors } = this.props;
     return (
       <div className="sequel-swicth control" aria-label="sequel-switch">
         <label>{label}:</label>
