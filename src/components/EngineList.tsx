@@ -24,7 +24,6 @@ class EngineList extends Component<InputProps> {
         >
           {engineList}
         </select>
-        {errors.engine && <span className="error-msg">{errors.engine}</span>}
       </div>
     );
   }

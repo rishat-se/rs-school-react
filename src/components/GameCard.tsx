@@ -17,7 +17,6 @@ export type GameCardData = {
 type GameCardProps = {
   gameCard: GameCardData;
 };
-//  /*Component<GameCardProps>*/
 
 class GameCard extends Component<GameCardProps> {
   render() {
@@ -51,7 +50,14 @@ class GameCard extends Component<GameCardProps> {
             Game Engine: <span>{engine}</span>
           </li>
           <li aria-label="game-card-property">
-            Platforms: <span>{platforms}</span>
+            Platforms:
+            <ul>
+              {platforms.map((platfrom) => (
+                <li key={platfrom}>
+                  <p>{platfrom}</p>
+                </li>
+              ))}
+            </ul>
           </li>
           <li aria-label="game-card-property">
             ESRB Rating: <span>{esrbRating}</span>

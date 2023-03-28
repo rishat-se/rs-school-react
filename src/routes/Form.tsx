@@ -153,9 +153,9 @@ class Form extends React.Component<object> {
             errors={controlErrors}
           />
           <EsrbRatingList
-            label="Engine"
+            label="ESRB Rating"
             inputRefs={this.controlRefs.esrbRating}
-            name="engine"
+            name="esrbRating"
             errors={controlErrors}
           />
           <SequelSwitch
