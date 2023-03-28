@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
-import Card from './Card';
-import cards from '../data/cards';
 import GameCard, { GameCardData } from './GameCard';
 
 const mockCard: GameCardData = {
