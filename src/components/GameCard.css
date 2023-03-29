@@ -8,11 +8,20 @@
   list-style: none;
 }
 
-.game-card-property span {
+.game-card__property {
+  padding-block-start: 0.1rem;
+}
+
+.game-card__property span {
   color:#4285f4;
   display: inline;
 }
 
 .game-card img {
   width: 260px;
+}
+
+.game-card__platforms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

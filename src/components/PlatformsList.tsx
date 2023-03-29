@@ -6,28 +6,29 @@ class PlatformsList extends Component<InputProps> {
   render() {
     const { label, inputRefs, name, errors } = this.props;
 
-    const platformsList = platforms.map((item, i) => {
+    const platformsList = platforms.map((platform, i) => {
       return (
-        <div className="platform-item" key={item}>
-          <label className="platform-label">
+        <div className="platform__checkbox" key={platform}>
+          <label className="platform__label">
             {inputRefs && (
               <input
                 ref={inputRefs[i]}
-                className="platform-checkbox"
+                className="platform__input"
                 type="checkbox"
                 name={name}
-                value={item}
-              ></input>
+                value={platform}
+              />
             )}
-            {item}
+            {platform}
           </label>
         </div>
       );
     });
+
     return (
-      <div className="platforms-list control" aria-label="platforms-list">
-        <label htmlFor="platforms">{label}:</label>
-        <div id={name} className="platform-items">
+      <div className="control platforms__list" aria-label="platforms-list">
+        <label htmlFor="control__label platform__label">{label}:</label>
+        <div id={name} className="platform__checkboxes">
           {platformsList}
         </div>
         {errors.platforms && <span className="error-msg">{errors.platforms}</span>}

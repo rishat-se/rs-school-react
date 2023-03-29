@@ -110,8 +110,8 @@ class Form extends React.Component<object> {
   render() {
     const { controlErrors } = this.state;
     return (
-      <div className="game-card-wrapper">
-        <form className="game-card-form" ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
+      <div className="game-card__container">
+        <form className="game-card__form" ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
           <h2>Add Game</h2>
           <TextInput
             label="Game"
@@ -131,7 +131,7 @@ class Form extends React.Component<object> {
             label="Publisher"
             inputRef={this.controlRefs.publisher}
             name="publisher"
-            placeholder="Enter Game Pablisher"
+            placeholder="Enter Game Publisher"
             errors={controlErrors}
           />
           <DateInput

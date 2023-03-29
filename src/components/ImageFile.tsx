@@ -7,10 +7,10 @@ class ImageFile extends Component<InputProps> {
 
     return (
       <div className="control">
-        <div>
-          <label htmlFor={name}>{label}:</label>
-          <input ref={inputRef} id={name} type="file" name={name}></input>
-        </div>
+        <label className="control__label" htmlFor={name}>
+          {label}:
+        </label>
+        <input className="control__input" ref={inputRef} id={name} type="file" name={name}></input>
         {errors.imageFile && <span className="error-msg">{errors.imageFile}</span>}
       </div>
     );

@@ -2,7 +2,8 @@
     color: red;
 }
 
-.game-card-form{
+
+.game-card__form {
     background: white;
     display: flex;
     flex-direction: column;
@@ -11,69 +12,102 @@
     margin-block: 1rem;
     margin-inline: auto;
     padding-block: 2rem;
-    padding-block: 1rem;
+    padding-inline: 1.5rem;
 }
 
-.game-card-wrapper h2 {
+.game-card__form h2 {
     padding-block: 0.5rem;
 }
 
-.game-card-wrapper span {
-    font-size: 1rem;
-    padding-block: 0.2rem;
-}
-
-.game-card-wrapper input {
-    margin-inline: 1rem;
-    font-size: 1rem;
-}
-
-.game-card-wrapper label {
-    margin-inline: 1rem;
-}
-
 .control {
-    padding: 0.5rem;
+    width: 100%;
+    padding-block: 0.5rem;
 }
 
-.input-field {
+.control__label {
+    display: block;
+    font-size: 1rem;
+}
+
+.control__input {
+    display: block;
+    font-size: 1.2rem;
     padding: 0.3rem;
 }
 
-.platform-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.text__input {
+    width: 100%;
 }
 
-.platform-item {
+.platform__checkboxes {
+    display: grid;
+    padding-block-start: 0.5rem ;
+    padding-block-end: 1rem ;
     padding-inline: 0.5rem;
 }
 
-.esrb-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.esrb-item {
+.platform-checkbox {
     padding-inline: 0.5rem;
+    padding-block: 0.1rem;
 }
 
-.engine-list select {
-    font-size: 1rem;
+.platform__label {
+    font-size: 1.2rem;
 }
-.game-card-wrapper button {
-    font-size: 1.1rem;
+
+.platform__input {
+    margin-inline-end: 1rem;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.esrb__radioboxes, .sequel__radioboxes {
+    display: grid;
+    padding-block-start: 0.5rem ;
+    padding-block-end: 1rem ;
+}
+
+.esrb__radiobox, .sequel__radiobox {
+    padding-inline: 0.5rem;
+    padding-block: 0.1rem;
+}
+
+.esrb__label, .sequel__label {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.esrb__input, .sequel__input {
+    margin-inline-end: 1rem;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.game-card__form button {
+    font-size: 1.3rem;
     padding: 0.3rem
 }
 
+@media screen and (min-width: 34em) {
+    .platform__checkboxes {
+        grid-template-columns: 1fr 1fr;
+    }
+    .esrb__radioboxes, .sequel__radioboxes {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}
+
+
 @media screen and (min-width: 50em) {
-    .game-card-wrapper form{
+    .game-card__form{
         max-width: 60vw;    
     }
 }
   
 @media screen and (min-width: 60em) {
-    .game-card-wrapper form{
+    .game-card__form{
         max-width: 45vw;    
     }
 }

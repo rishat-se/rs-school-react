@@ -14,7 +14,7 @@ class EngineList extends Component<InputProps> {
 
     return (
       <div className="engine-list control" aria-label="engine-list">
-        <label htmlFor="engine">{label}:</label>
+        <label htmlFor="engine control__label">{label}:</label>
         <select id={name} ref={selectRef} className="control__input" aria-label={name}>
           {engineList}
         </select>
