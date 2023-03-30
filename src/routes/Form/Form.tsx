@@ -1,18 +1,18 @@
 import React from 'react';
-import EngineList from '../components/EngineList';
-import EsrbRatingList from '../components/EsrbRatingList';
-import { GameCardData } from '../components/GameCard';
-import GameCardList from '../components/GameCardList';
-import PlatformsList from '../components/PlatformsList';
-import SequelSwitch from '../components/SequelSwitch';
-import controlValuesRules from '../validator/controlValuesRules';
-import validate from '../validator/validate';
+import EngineList from '../../components/FormComponents/EngineList';
+import EsrbRatingList from '../../components/FormComponents/EsrbRatingList';
+import { GameCardData } from '../../components/GameCard/GameCard';
+import GameCardList from '../../components/GameCardList/GameCardList';
+import PlatformsList from '../../components/FormComponents/PlatformsList';
+import SequelSwitch from '../../components/FormComponents/SequelSwitch';
+import controlValuesRules from '../../validator/controlValuesRules';
+import validate from '../../validator/validate';
 import { v4 as uuidv4 } from 'uuid';
 import './Form.css';
-import ImageFile from '../components/ImageFile';
-import TextInput from '../components/TextInput';
-import DateInput from '../components/DateInput';
-import { esrbRatings, platforms } from '../constants/formConstants';
+import ImageFile from '../../components/FormComponents/ImageFile';
+import TextInput from '../../components/FormComponents/TextInput';
+import DateInput from '../../components/FormComponents/DateInput';
+import { esrbRatings, platforms } from '../../constants/formConstants';
 
 export type ControlValues = Partial<GameCardData>;
 export type ControlErrors = {

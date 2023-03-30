@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, WithRouterProps } from '../utils/withRouter';
+import { withRouter, WithRouterProps } from '../../utils/withRouter';
 
 const paths: { [key: string]: string } = {
   ['/']: 'Home',

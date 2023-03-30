@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { InputProps } from '../types/InputProps';
-import { GameCardData } from './GameCard';
+import { InputProps } from '../../types/InputProps';
 
-class TextInput extends Component<InputProps> {
+class DateInput extends Component<InputProps> {
   render() {
     const { label, inputRef, name, errors, ...attributes } = this.props;
     return (
@@ -10,18 +9,16 @@ class TextInput extends Component<InputProps> {
         <label className="control__label" htmlFor={name}>{`${label}:`}</label>
         <input
           id={name}
+          type="date"
           ref={inputRef}
-          className="control__input text__input"
+          className="control__input"
           aria-label={name}
-          type="text"
           {...attributes}
         />
-        {errors[name as keyof GameCardData] && (
-          <span className="error-msg">{errors[name as keyof GameCardData]}</span>
-        )}
+        {errors.firstRelease && <span className="error-msg">{errors.firstRelease}</span>}
       </div>
     );
   }
 }
 
-export default TextInput;
+export default DateInput;

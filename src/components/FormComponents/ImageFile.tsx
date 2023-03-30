@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputProps } from '../types/InputProps';
+import { InputProps } from '../../types/InputProps';
 
 class ImageFile extends Component<InputProps> {
   render() {

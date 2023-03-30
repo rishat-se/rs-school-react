@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { esrbRatings } from '../constants/formConstants';
-import { InputProps } from '../types/InputProps';
+import { esrbRatings } from '../../constants/formConstants';
+import { InputProps } from '../../types/InputProps';
 
 class EsrbRatingList extends Component<InputProps> {
   render() {
