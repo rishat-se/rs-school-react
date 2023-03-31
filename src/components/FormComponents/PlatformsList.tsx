@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { platforms } from '../../constants/formConstants';
+import { platforms } from '../../constants/form.constants';
 import { InputProps } from '../../types/InputProps';
 
 class PlatformsList extends Component<InputProps> {

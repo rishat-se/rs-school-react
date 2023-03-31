@@ -1,38 +1,30 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchBar.css';
 
-class SearchBar extends Component<object, { searchValue: string }> {
-  constructor(props: object) {
-    super(props);
-    this.state = { searchValue: localStorage.getItem('searchValue') || '' };
+function SearchBar() {
+  const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+
+  function handleChange(e: React.FormEvent<HTMLInputElement>) {
+    setSearchValue(e.currentTarget.value);
   }
 
-  handleChange(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({ searchValue: e.currentTarget.value });
-  }
-
-  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
 
-  componentWillUnmount(): void {
-    localStorage.setItem('searchValue', this.state.searchValue);
-  }
+  useEffect(() => {
+    console.log('search value saved');
+    localStorage.setItem('searchValue', searchValue);
+  }, [searchValue]);
 
-  render() {
-    return (
-      <div className="search-bar">
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <input
-            onChange={(e) => this.handleChange(e)}
-            type="search"
-            value={this.state.searchValue}
-          ></input>
-          <button>Search</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="search-bar">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input onChange={(e) => handleChange(e)} type="search" value={searchValue}></input>
+        <button>Search</button>
+      </form>
+    </div>
+  );
 }
 
 export default SearchBar;

@@ -12,7 +12,7 @@ import './Form.css';
 import ImageFile from '../../components/FormComponents/ImageFile';
 import TextInput from '../../components/FormComponents/TextInput';
 import DateInput from '../../components/FormComponents/DateInput';
-import { esrbRatings, platforms } from '../../constants/formConstants';
+import { esrbRatings, platforms } from '../../constants/form.constants';
 
 export type ControlValues = Partial<GameCardData>;
 export type ControlErrors = {
