@@ -1,13 +1,18 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { paths } from '../../constants/constants';
-import { withRouter, WithRouterProps } from '../../utils/withRouter';
 
-function LocationHeading(props: WithRouterProps & { className: string }) {
+type LocationHeadingProps = {
+  className: string;
+};
+
+function LocationHeading(props: LocationHeadingProps) {
+  const location = useLocation();
   return (
     <>
-      <h2 className={props.className}>{paths[props.location.pathname]}</h2>
+      <h2 className={props.className}>{paths[location.pathname]}</h2>
     </>
   );
 }
 
-export default withRouter(LocationHeading);
+export default LocationHeading;
