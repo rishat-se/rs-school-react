@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GameCard, { GameCardData } from '../GameCard/GameCard';
 import './GameCardList.css';
 
