@@ -13,7 +13,6 @@ function SearchBar() {
   }
 
   useEffect(() => {
-    console.log('search value saved');
     localStorage.setItem('searchValue', searchValue);
   }, [searchValue]);
 

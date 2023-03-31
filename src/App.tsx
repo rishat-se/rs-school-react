@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Home from './routes/Home/Home';
 import NotFound from './routes/NotFound/NotFound';
@@ -51,14 +51,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <RouterProvider router={router} />
-      </>
-    );
-  }
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
