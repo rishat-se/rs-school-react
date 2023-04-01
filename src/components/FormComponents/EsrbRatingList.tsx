@@ -2,37 +2,34 @@ import React, { Component } from 'react';
 import { esrbRatings } from '../../constants/form.constants';
 import { InputProps } from '../../types/InputProps';
 
-class EsrbRatingList extends Component<InputProps> {
-  render() {
-    const { label, inputRefs, name, errors } = this.props;
+function EsrbRatingList(props: InputProps) {
+  const { label, name, errors, register } = props;
 
-    const esrbRatingList = esrbRatings.map((item, i) => {
-      return (
-        <div key={item} className="esrb__radiobox">
-          <label className="esrb__label">
-            {inputRefs && (
-              <input
-                className="esrb__input"
-                ref={inputRefs[i]}
-                type="radio"
-                name={name}
-                value={item}
-              ></input>
-            )}
-            {item}
-          </label>
-        </div>
-      );
-    });
-
+  const esrbRatingList = esrbRatings.map((rating) => {
     return (
-      <div className="esrb-rating-list control" aria-label="esrb-rating-list">
-        <label className="control__label">{label}:</label>
-        <div className="esrb__radioboxes">{esrbRatingList}</div>
-        {errors.esrbRating && <span className="error-msg">{errors.esrbRating}</span>}
+      <div key={rating} className="esrb__radiobox">
+        <label className="esrb__label">
+          <input
+            className="esrb__input"
+            type="radio"
+            value={rating}
+            {...register(name, { required: 'Please select assigned ESRB rating' })}
+          />
+          {rating}
+        </label>
       </div>
     );
-  }
+  });
+
+  return (
+    <div className="esrb-rating-list control" aria-label="esrb-rating-list">
+      <label className="control__label">{label}:</label>
+      <div className="esrb__radioboxes">{esrbRatingList}</div>
+      {errors.esrbRating && typeof errors.esrbRating.message === 'string' && (
+        <span className="error-msg">{errors.esrbRating.message}</span>
+      )}
+    </div>
+  );
 }
 
 export default EsrbRatingList;

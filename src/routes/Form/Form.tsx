@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EngineList from '../../components/FormComponents/EngineList';
 import EsrbRatingList from '../../components/FormComponents/EsrbRatingList';
 import { GameCardData } from '../../components/GameCard/GameCard';
@@ -13,6 +13,7 @@ import ImageFile from '../../components/FormComponents/ImageFile';
 import TextInput from '../../components/FormComponents/TextInput';
 import DateInput from '../../components/FormComponents/DateInput';
 import { esrbRatings, platforms } from '../../constants/form.constants';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 export type ControlValues = Partial<GameCardData>;
 export type ControlErrors = {
@@ -31,47 +32,54 @@ type ControlRefs = {
   imageFile: React.RefObject<HTMLInputElement>;
 };
 
-class Form extends React.Component<object> {
-  constructor(props: object) {
-    super(props);
-    this.state = { gameCardList: [], controlErrors: {} };
-    this.formRef = React.createRef();
-    this.controlRefs = {
-      gameName: React.createRef(),
-      developer: React.createRef(),
-      publisher: React.createRef(),
-      firstRelease: React.createRef(),
-      esrbRating: esrbRatings.map(() => React.createRef()),
-      engine: React.createRef(),
-      platforms: platforms.map(() => React.createRef()),
-      isSequelAnnounced: [React.createRef(), React.createRef()],
-      imageFile: React.createRef(),
-    };
-  }
-  state: { gameCardList: GameCardData[]; controlErrors: ControlErrors };
-  controlRefs: ControlRefs;
-  formRef: React.RefObject<HTMLFormElement>;
+function Form() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [gameCardList, setGameCardList] = useState();
+  const [controlErrors, setControlErrors] = useState();
 
-  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    const imageFileRef = this.controlRefs.imageFile.current;
-    e.preventDefault();
-    const controlValues = this.getFormValues(this.controlRefs);
-    const newControlErrors = validate(controlValues, controlValuesRules);
-    this.setState({ controlErrors: newControlErrors });
-    if (Object.keys(newControlErrors).length === 0) {
-      if (imageFileRef !== null && imageFileRef.files !== null) {
-        const file = URL.createObjectURL(imageFileRef.files[0]);
-        controlValues.imageFile = file;
-      }
-      this.addGameCard(controlValues);
-      alert('Success: new game added');
-      if (this.formRef.current !== null) {
-        this.formRef.current.reset();
-      }
-    }
-  }
+  const formRef = React.createRef();
+  // this.controlRefs = {
+  //   gameName: React.createRef(),
+  //   developer: React.createRef(),
+  //   publisher: React.createRef(),
+  //   firstRelease: React.createRef(),
+  //   esrbRating: esrbRatings.map(() => React.createRef()),
+  //   engine: React.createRef(),
+  //   platforms: platforms.map(() => React.createRef()),
+  //   isSequelAnnounced: [React.createRef(), React.createRef()],
+  //   imageFile: React.createRef(),
+  // };
 
-  private getFormValues(controlRefs: ControlRefs) {
+  // state: { gameCardList: GameCardData[]; controlErrors: ControlErrors };
+  // controlRefs: ControlRefs;
+  // formRef: React.RefObject<HTMLFormElement>;
+  //  console.log(errors);
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    //   // const imageFileRef = this.controlRefs.imageFile.current;
+    //   // e.preventDefault();
+    //   // const controlValues = this.getFormValues(this.controlRefs);
+    //   // const newControlErrors = validate(controlValues, controlValuesRules);
+    //   // this.setState({ controlErrors: newControlErrors });
+    //   // if (Object.keys(newControlErrors).length === 0) {
+    //   //   if (imageFileRef !== null && imageFileRef.files !== null) {
+    //   //     const file = URL.createObjectURL(imageFileRef.files[0]);
+    //   //     controlValues.imageFile = file;
+    //   //   }
+    //   //   this.addGameCard(controlValues);
+    //   //   alert('Success: new game added');
+    //   //   if (this.formRef.current !== null) {
+    //   //     this.formRef.current.reset();
+    //   //   }
+    //   // }
+    console.log(data);
+  };
+
+  function getFormValues(controlRefs: ControlRefs) {
     const controlValues: ControlValues = {};
     controlValues.gameName = controlRefs.gameName.current ? controlRefs.gameName.current.value : '';
     controlValues.developer = controlRefs.developer.current
@@ -101,81 +109,35 @@ class Form extends React.Component<object> {
     return controlValues;
   }
 
-  private addGameCard(controlValues: ControlValues) {
-    const newGameCard = { id: uuidv4(), ...controlValues };
-    const newGameCardList = this.state.gameCardList.concat([newGameCard as GameCardData]);
-    this.setState({ gameCardList: newGameCardList });
-  }
+  // function addGameCard(controlValues: ControlValues) {
+  //   const newGameCard = { id: uuidv4(), ...controlValues };
+  //   const newGameCardList = gameCardList.concat([newGameCard as GameCardData]);
+  //   this.setState({ gameCardList: newGameCardList });
+  // }
 
-  render() {
-    const { controlErrors } = this.state;
-    return (
-      <div className="game-card__container">
-        <form className="game-card__form" ref={this.formRef} onSubmit={(e) => this.handleSubmit(e)}>
-          <h2>Add Game</h2>
-          <TextInput
-            label="Game"
-            inputRef={this.controlRefs.gameName}
-            name="gameName"
-            placeholder="Enter Game Name"
-            errors={controlErrors}
-          />
-          <TextInput
-            label="Developer"
-            inputRef={this.controlRefs.developer}
-            name="developer"
-            placeholder="Enter Game Developer"
-            errors={controlErrors}
-          />
-          <TextInput
-            label="Publisher"
-            inputRef={this.controlRefs.publisher}
-            name="publisher"
-            placeholder="Enter Game Publisher"
-            errors={controlErrors}
-          />
-          <DateInput
-            label="First Release"
-            inputRef={this.controlRefs.firstRelease}
-            name="firstRelease"
-            errors={controlErrors}
-          />
-          <EngineList
-            label="Engine"
-            selectRef={this.controlRefs.engine}
-            name="engine"
-            errors={controlErrors}
-          />
-          <PlatformsList
-            label="Platforms"
-            inputRefs={this.controlRefs.platforms}
-            name="platforms"
-            errors={controlErrors}
-          />
-          <EsrbRatingList
-            label="ESRB Rating"
-            inputRefs={this.controlRefs.esrbRating}
-            name="esrbRating"
-            errors={controlErrors}
-          />
-          <SequelSwitch
-            label="Is sequel announced?"
-            inputRefs={this.controlRefs.isSequelAnnounced}
-            name="isSequelAnnounced"
-            errors={controlErrors}
-          />
-          <ImageFile
-            label="Load Thumbnail"
-            inputRef={this.controlRefs.imageFile}
-            name="imageFile"
-            errors={controlErrors}
-          />
-          <button>Create</button>
-        </form>
-        <GameCardList gameCardList={this.state.gameCardList} />
-      </div>
-    );
-  }
+  return (
+    <div className="game-card__container">
+      <form className="game-card__form" onSubmit={handleSubmit(onSubmit)}>
+        <h2>Add Game</h2>
+        <TextInput label="Game" name="gameName" errors={errors} register={register} />
+        <TextInput label="Developer" name="developer" errors={errors} register={register} />
+        <TextInput label="Publisher" name="publisher" errors={errors} register={register} />
+        <DateInput label="First Release" name="firstRelease" errors={errors} register={register} />
+        <EngineList label="Engine" name="engine" errors={errors} register={register} />
+        <PlatformsList label="Platforms" name="platforms" errors={errors} register={register} />
+        <EsrbRatingList label="ESRB Rating" name="esrbRating" errors={errors} register={register} />
+        <SequelSwitch
+          label="Is sequel announced?"
+          name="isSequelAnnounced"
+          errors={errors}
+          register={register}
+        />
+        <ImageFile label="Load Thumbnail" name="imageFile" errors={errors} register={register} />
+        <button>Create</button>
+      </form>
+      {/* <GameCardList gameCardList={this.state.gameCardList} /> */}
+    </div>
+  );
 }
 
 export default Form;

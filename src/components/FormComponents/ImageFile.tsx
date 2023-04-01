@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { InputProps } from '../../types/InputProps';
 
-class ImageFile extends Component<InputProps> {
-  render() {
-    const { label, inputRef, name, errors } = this.props;
+function ImageFile(props: InputProps) {
+  const { label, name, errors, register } = props;
 
-    return (
-      <div className="control">
-        <label className="control__label" htmlFor={name}>
-          {label}:
-        </label>
-        <input className="control__input" ref={inputRef} id={name} type="file" name={name}></input>
-        {errors.imageFile && <span className="error-msg">{errors.imageFile}</span>}
-      </div>
-    );
-  }
+  return (
+    <div className="control">
+      <label className="control__label" htmlFor={name}>
+        {label}:
+      </label>
+      <input
+        className="control__input"
+        id={name}
+        type="file"
+        {...register(name, { required: 'Please select a file for thumbnail of the game' })}
+      ></input>
+      {errors.imageFile && typeof errors.imageFile.message === 'string' && (
+        <span className="error-msg">{errors.imageFile.message}</span>
+      )}
+    </div>
+  );
 }
 
 export default ImageFile;

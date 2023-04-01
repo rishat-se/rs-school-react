@@ -1,4 +1,5 @@
-import { ControlErrors } from '../routes/Form';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { ControlErrors } from '../routes/Form/Form';
 
 export type InputProps = {
   label: string;
@@ -7,5 +8,6 @@ export type InputProps = {
   inputRefs?: React.RefObject<HTMLInputElement>[];
   name: string;
   placeholder?: string;
-  errors: ControlErrors;
+  errors: FieldErrors<FieldValues>;
+  register: UseFormRegister<FieldValues>;
 };
