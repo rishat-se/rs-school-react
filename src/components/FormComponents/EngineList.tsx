@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { engines } from '../../constants/form.constants';
 import { InputProps } from '../../types/InputProps';
 
 function EngineList(props: InputProps) {
-  const { label, name, errors, register } = props;
+  const { label, name, register } = props;
 
   const engineList = engines.map((engine) => (
     <option key={engine} value={engine}>

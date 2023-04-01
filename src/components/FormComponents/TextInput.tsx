@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputProps } from '../../types/InputProps';
-import { GameCardData } from '../GameCard/GameCard';
 
 function TextInput(props: InputProps) {
-  const { label, name, placeholder, errors, register } = props;
+  const { label, name, errors, register } = props;
   return (
     <div className="control">
       <label className="control__label" htmlFor={name}>{`${label}:`}</label>

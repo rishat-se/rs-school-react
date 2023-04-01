@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputProps } from '../../types/InputProps';
 
 function DateInput(props: InputProps) {

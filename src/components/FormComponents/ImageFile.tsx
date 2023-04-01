@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputProps } from '../../types/InputProps';
 
 function ImageFile(props: InputProps) {
@@ -14,7 +14,7 @@ function ImageFile(props: InputProps) {
         id={name}
         type="file"
         {...register(name, { required: 'Please select a file for thumbnail of the game' })}
-      ></input>
+      />
       {errors.imageFile && typeof errors.imageFile.message === 'string' && (
         <span className="error-msg">{errors.imageFile.message}</span>
       )}

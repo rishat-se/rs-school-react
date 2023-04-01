@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { platforms } from '../../constants/form.constants';
 import { InputProps } from '../../types/InputProps';
 
 function PlatformsList(props: InputProps) {
   const { label, name, errors, register } = props;
 
-  const platformsList = platforms.map((platform, i) => {
+  const platformsList = platforms.map((platform) => {
     return (
       <div className="platform__checkbox" key={platform}>
         <label className="platform__label">

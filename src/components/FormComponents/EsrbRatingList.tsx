@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { esrbRatings } from '../../constants/form.constants';
 import { InputProps } from '../../types/InputProps';
 

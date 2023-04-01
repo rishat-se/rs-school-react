@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputProps } from '../../types/InputProps';
 
 function SequelSwitch(props: InputProps) {
@@ -14,7 +14,7 @@ function SequelSwitch(props: InputProps) {
               type="radio"
               value="Yes"
               {...register(name, { required: 'Please select whether sequel was announced or not' })}
-            ></input>
+            />
             Yes
           </label>
         </div>
@@ -25,7 +25,7 @@ function SequelSwitch(props: InputProps) {
               type="radio"
               value="No"
               {...register(name, { required: 'Please select whether sequel was announced or not' })}
-            ></input>
+            />
             No
           </label>
         </div>
