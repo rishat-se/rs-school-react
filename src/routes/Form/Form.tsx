@@ -30,9 +30,7 @@ function Form() {
 
   function addGameCard(data: FieldValues) {
     const newGameCard: GameCardData = { id: uuidv4(), ...data } as GameCardData;
-    console.log(newGameCard);
     const newGameCardList = gameCardList.concat([newGameCard as GameCardData]);
-    console.log(newGameCardList);
     setGameCardList(newGameCardList);
   }
 

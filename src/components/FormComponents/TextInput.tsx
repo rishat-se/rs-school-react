@@ -13,7 +13,7 @@ function TextInput(props: InputProps) {
         type="text"
         {...register(name, {
           required: `Please enter ${label} name`,
-          maxLength: { value: 10, message: 'Max length is 0 characters' },
+          maxLength: { value: 50, message: 'Max length is 50 characters' },
         })}
       />
       {errors[name] !== undefined && typeof errors[name]!.message === 'string' && (
