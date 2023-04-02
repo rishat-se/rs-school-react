@@ -18,17 +18,14 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-
-  const formRef: React.RefObject<HTMLFormElement> = React.createRef();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const file = URL.createObjectURL(data.imageFile[0]);
     addGameCard({ ...data, imageFile: file });
     alert('Success: new game added');
-    if (formRef.current) {
-      formRef.current.reset();
-    }
+    reset();
   };
 
   function addGameCard(data: FieldValues) {
@@ -41,7 +38,7 @@ function Form() {
 
   return (
     <div className="game-card__container">
-      <form ref={formRef} className="game-card__form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="game-card__form" onSubmit={handleSubmit(onSubmit)}>
         <h2>Add Game</h2>
         <TextInput label="Game" name="gameName" errors={errors} register={register} />
         <TextInput label="Developer" name="developer" errors={errors} register={register} />
