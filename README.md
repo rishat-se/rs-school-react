@@ -11,7 +11,7 @@ cd rs-school-react
 ```
 
 ```
-git checkout hooks
+git checkout api
 ```
 
 ```
