@@ -7,20 +7,30 @@ import { CardData } from '../../types/CardData';
 function Home() {
   const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
   const [cards, setCards] = useState<CardData[]>([]);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     console.log('useEffect searchValue is ', searchValue);
     fetch(`${API_URL}/?name=${searchValue}`)
       .then((response) => {
-        console.log(response);
+        if (!response.ok) throw new Error('no cards matching search value');
         return response.json();
       })
-      .then(({ info, results }) => setCards(results));
+      .then(({ results }) => {
+        setIsPending(false);
+        setCards(results);
+      })
+      .catch((err) => {
+        setIsPending(false);
+        setCards([]);
+        console.log(err.message);
+      });
   }, [searchValue]);
 
   function handleSearchValueSubmit(searchValue: string) {
     console.log('handleSubmit called');
     setSearchValue(searchValue);
+    setIsPending(true);
     localStorage.setItem('searchValue', searchValue);
   }
 
@@ -28,7 +38,8 @@ function Home() {
   return (
     <div>
       <SearchBar searchValue={searchValue} onSearchValueSubmit={handleSearchValueSubmit} />
-      <CardList cards={cards} />
+      {isPending && <span>Loading...</span>}
+      {cards && <CardList cards={cards} />}
     </div>
   );
 }

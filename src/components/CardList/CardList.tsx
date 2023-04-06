@@ -10,7 +10,9 @@ type CardListProps = {
 function CardList({ cards }: CardListProps) {
   return (
     <ul className="card-list" aria-label="card-list">
-      {cards && cards.map((item) => <Card key={item.id} card={item} />)}
+      {cards.map((item) => (
+        <Card key={item.id} card={item} />
+      ))}
     </ul>
   );
 }
