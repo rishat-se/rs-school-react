@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import './SearchBar.css';
+import { API_URL } from '../../constants/constants';
 
-function SearchBar() {
-  const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+type SearchBarProps = {
+  searchValue: string;
+  onSearchValueSubmit: (searchValue: string) => void;
+};
+
+function SearchBar({ searchValue, onSearchValueSubmit }: SearchBarProps) {
+  const [searchInput, setSearchInput] = useState(searchValue);
 
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
-    setSearchValue(e.currentTarget.value);
+    setSearchInput(e.currentTarget.value);
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    onSearchValueSubmit(searchInput);
   }
 
-  useEffect(() => {
-    localStorage.setItem('searchValue', searchValue);
-  }, [searchValue]);
-
+  console.log('SearchBar render');
   return (
     <div className="search-bar">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input onChange={(e) => handleChange(e)} type="search" value={searchValue}></input>
+      <form onSubmit={(e) => handleFormSubmit(e)}>
+        <input onChange={(e) => handleChange(e)} type="search" value={searchInput}></input>
         <button>Search</button>
       </form>
     </div>
