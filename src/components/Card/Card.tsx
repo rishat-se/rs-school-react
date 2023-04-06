@@ -1,6 +1,6 @@
 import React from 'react';
-import { CardData } from '../../data/cards';
 import './Card.css';
+import { CardData } from '../../types/CardData';
 
 type CardProps = {
   card: CardData;
@@ -10,7 +10,11 @@ function Card(props: CardProps) {
   const { card } = props;
   return (
     <li className="card" aria-label="card">
-      <img alt={`${card.name} image`} src={card.image} />
+      <img
+        alt={`${card.name} image`}
+        // src={card.image ? card.image : 'public/image-placeholder.jpg'}
+        src={card.image}
+      />
       <ul>
         <li aria-label="character-property">
           name: <span>{card.name}</span>
@@ -19,10 +23,10 @@ function Card(props: CardProps) {
           status: <span>{card.status}</span>
         </li>
         <li aria-label="character-property">
-          gender: <span>{card.gender}</span>
+          species: <span>{card.species}</span>
         </li>
         <li aria-label="character-property">
-          species: <span>{card.species}</span>
+          gender: <span>{card.gender}</span>
         </li>
         <li aria-label="character-property">
           origin: <span>{card.origin.name}</span>

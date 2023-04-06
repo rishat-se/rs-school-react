@@ -1,13 +1,16 @@
 import React from 'react';
-import cards from '../../data/cards';
 import Card from '../Card/Card';
 import './CardList.css';
+import { CardData } from '../../types/CardData';
 
-function CardList() {
-  const cardItems = cards.map((item) => <Card key={item.id} card={item} />);
+type CardListProps = {
+  cards: CardData[];
+};
+
+function CardList({ cards }: CardListProps) {
   return (
     <ul className="card-list" aria-label="card-list">
-      {cardItems}
+      {cards && cards.map((item) => <Card key={item.id} card={item} />)}
     </ul>
   );
 }
