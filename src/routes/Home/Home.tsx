@@ -27,11 +27,11 @@ function Home() {
       });
   }, [searchValue]);
 
-  function handleSearchValueSubmit(searchValue: string) {
+  function handleSearchValueSubmit(newSearchValue: string) {
     console.log('handleSubmit called');
-    setSearchValue(searchValue);
+    setSearchValue(newSearchValue);
     setIsPending(true);
-    localStorage.setItem('searchValue', searchValue);
+    localStorage.setItem('searchValue', newSearchValue);
   }
 
   console.log('home render & searchValue is: ', searchValue);

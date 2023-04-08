@@ -1,6 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './SearchBar.css';
-import { API_URL } from '../../constants/constants';
 
 type SearchBarProps = {
   searchValue: string;

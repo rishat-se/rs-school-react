@@ -14,7 +14,7 @@ export type CardData = {
     url: string;
   };
   image: string;
-  episodes: string[];
+  episode: string[];
   url: string;
   created: string;
 };
