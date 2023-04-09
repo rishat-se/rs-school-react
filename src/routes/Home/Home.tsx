@@ -10,7 +10,6 @@ function Home() {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    console.log('useEffect searchValue is ', searchValue);
     fetch(`${API_URL}/?name=${searchValue}`)
       .then((response) => {
         if (!response.ok) throw new Error('no cards matching search value');
@@ -28,13 +27,11 @@ function Home() {
   }, [searchValue]);
 
   function handleSearchValueSubmit(newSearchValue: string) {
-    console.log('handleSubmit called');
     setSearchValue(newSearchValue);
     setIsPending(true);
     localStorage.setItem('searchValue', newSearchValue);
   }
 
-  console.log('home render & searchValue is: ', searchValue);
   return (
     <div>
       <SearchBar searchValue={searchValue} onSearchValueSubmit={handleSearchValueSubmit} />

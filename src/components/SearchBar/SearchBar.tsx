@@ -18,7 +18,6 @@ function SearchBar({ searchValue, onSearchValueSubmit }: SearchBarProps) {
     onSearchValueSubmit(searchInput);
   }
 
-  console.log('SearchBar render');
   return (
     <div className="search-bar">
       <form onSubmit={(e) => handleFormSubmit(e)}>

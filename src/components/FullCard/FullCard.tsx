@@ -7,9 +7,8 @@ type CardProps = {
 };
 
 function FullCard({ card }: CardProps) {
-  console.log(card);
   return (
-    <div className="fullcard" aria-label="fullcard">
+    <article className="fullcard" aria-label="fullcard">
       <img alt={`${card.name} image`} src={card.image} />
       <ul>
         <li aria-label="character-property">
@@ -48,7 +47,7 @@ function FullCard({ card }: CardProps) {
           </ul>
         </li>
       </ul>
-    </div>
+    </article>
   );
 }
 
