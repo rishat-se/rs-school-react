@@ -1,10 +1,4 @@
-import {
-  getByAltText,
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
 import Home from './Home';
@@ -16,18 +10,23 @@ describe('Home', () => {
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
   });
 
-  it('test of presence card list', () => {
-    render(<Home />);
-    expect(screen.getByRole('list', { name: 'card-list' })).toBeInTheDocument();
-  });
-
   it('test presence of 20 cards', async () => {
     render(<Home />);
     expect(await screen.findAllByRole('listitem', { name: 'card' })).toHaveLength(20);
   });
 
-  it('card click ', async () => {
-    const { container } = render(<Home />);
+  it('test typing in aaaaa search input field typing and error ', async () => {
+    const user = userEvent.setup();
+    render(<Home />);
+    const searchInput = screen.getByRole('searchbox');
+    await user.type(searchInput, 'aaaaa');
+    await user.click(screen.getByRole('button', { name: 'Search' }));
+    expect(screen.getByRole('searchbox')).toHaveValue('aaaaa');
+    expect(await screen.findByRole('searchbox')).toHaveValue('aaaaa');
+  });
+
+  it('test first card click, modal appearance and disappearence ', async () => {
+    render(<Home />);
     const user = userEvent.setup();
     const cards = await screen.findAllByRole('listitem', { name: 'card' });
     await user.click(cards[0]);

@@ -3,40 +3,63 @@ import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { API_URL } from '../../constants/constants';
 import { CardData } from '../../types/CardData';
+import ProgressIndicator from '../../components/ProgressIndicator/ProgressIndicator';
+import Modal from '../../components/Modal/Modal';
+import { hideModalContext } from '../../components/CardList/hideModalContext';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function Home() {
   const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
-  const [cards, setCards] = useState<CardData[]>([]);
+  const [cards, setCards] = useState<CardData[] | null>(null);
   const [isPending, setIsPending] = useState(true);
+  const [errorMessage, setErrorMessage] = useState({ isVisible: false, message: '' });
 
   useEffect(() => {
-    fetch(`${API_URL}/?name=${searchValue}`)
-      .then((response) => {
+    const fetchCards = async () => {
+      setIsPending(true);
+      setCards(null);
+      try {
+        const response = await fetch(`${API_URL}/?name=${searchValue}`);
         if (!response.ok) throw new Error('no cards matching search value');
-        return response.json();
-      })
-      .then(({ results }) => {
+        const { results } = await response.json();
         setIsPending(false);
         setCards(results);
-      })
-      .catch((err) => {
+      } catch (err) {
         setIsPending(false);
-        setCards([]);
-        console.log(err.message);
-      });
+        setCards(null);
+        setErrorMessage({
+          isVisible: true,
+          message: err instanceof Error ? err.message : String(err),
+        });
+        setTimeout(() => {
+          setErrorMessage({ isVisible: false, message: '' });
+        }, 3000);
+      }
+    };
+    fetchCards();
   }, [searchValue]);
+
+  function hideError() {
+    setErrorMessage({ isVisible: false, message: '' });
+  }
 
   function handleSearchValueSubmit(newSearchValue: string) {
     setSearchValue(newSearchValue);
-    setIsPending(true);
     localStorage.setItem('searchValue', newSearchValue);
   }
 
   return (
     <div>
       <SearchBar searchValue={searchValue} onSearchValueSubmit={handleSearchValueSubmit} />
-      {isPending && <span>Loading...</span>}
+      {isPending && <ProgressIndicator />}
       {cards && <CardList cards={cards} />}
+      {errorMessage.isVisible && (
+        <hideModalContext.Provider value={hideError}>
+          <Modal>
+            <ErrorMessage message={errorMessage.message} />
+          </Modal>
+        </hideModalContext.Provider>
+      )}
     </div>
   );
 }

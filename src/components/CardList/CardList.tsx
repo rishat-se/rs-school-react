@@ -18,7 +18,7 @@ function CardList({ cards }: CardListProps) {
     setModalUrl(url);
   }
 
-  function hideModal(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+  function hideModal() {
     setIsModalVisible(false);
     setModalUrl('');
   }

@@ -3,6 +3,8 @@ import { CardData } from '../../types/CardData';
 import FullCard from '../FullCard/FullCard';
 import Modal from '../Modal/Modal';
 import ReactDOM from 'react-dom';
+import ProgressIndicator from '../ProgressIndicator/ProgressIndicator';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 type CardModalProps = {
   url: string;
@@ -11,29 +13,36 @@ type CardModalProps = {
 function CardModal({ url }: CardModalProps) {
   const [isPending, setIsPending] = useState(true);
   const [card, setCard] = useState<CardData | null>(null);
+  const [errorMessage, setErrorMessage] = useState({ isVisible: false, message: '' });
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) throw new Error('no cards matching search value');
-        return response.json();
-      })
-      .then((data) => {
+    const fetchCard = async () => {
+      setIsPending(true);
+      setCard(null);
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('no card matching search value');
+        const cardData = await response.json();
         setIsPending(false);
-        setCard(data);
-      })
-      .catch((err) => {
+        setCard(cardData);
+      } catch (err) {
         setIsPending(false);
         setCard(null);
-        console.log(err.message);
-      });
+        setErrorMessage({
+          isVisible: true,
+          message: err instanceof Error ? err.message : String(err),
+        });
+      }
+    };
+    fetchCard();
   }, [url]);
 
   return ReactDOM.createPortal(
     <>
       <Modal>
-        {isPending && <span>Loading...</span>}
+        {isPending && <ProgressIndicator />}
         {card && <FullCard card={card} />}
+        {errorMessage.isVisible && <ErrorMessage message={errorMessage.message} />}
       </Modal>
     </>,
     document.body
