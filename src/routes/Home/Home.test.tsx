@@ -15,16 +15,6 @@ describe('Home', () => {
     expect(await screen.findAllByRole('listitem', { name: 'card' })).toHaveLength(20);
   });
 
-  it('test typing in aaaaa search input field typing and error ', async () => {
-    const user = userEvent.setup();
-    render(<Home />);
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'aaaaa');
-    await user.click(screen.getByRole('button', { name: 'Search' }));
-    expect(screen.getByRole('searchbox')).toHaveValue('aaaaa');
-    expect(await screen.findByRole('searchbox')).toHaveValue('aaaaa');
-  });
-
   it('test first card click, modal appearance and disappearence ', async () => {
     render(<Home />);
     const user = userEvent.setup();
@@ -36,5 +26,16 @@ describe('Home', () => {
     await waitFor(() =>
       expect(screen.queryByRole('article', { name: 'fullcard' })).not.toBeInTheDocument()
     );
+    await user.click(cards[1]);
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
+  });
+
+  it('test typing in aaaaa search input field typing and error appearance', async () => {
+    const user = userEvent.setup();
+    render(<Home />);
+    const searchInput = screen.getByRole('searchbox');
+    await user.type(searchInput, 'aaaaa');
+    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
   });
 });
