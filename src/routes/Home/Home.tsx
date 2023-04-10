@@ -33,7 +33,7 @@ function Home() {
         });
         setTimeout(() => {
           setErrorMessage({ isVisible: false, message: '' });
-        }, 30000);
+        }, 3000);
       }
     };
     fetchCards();

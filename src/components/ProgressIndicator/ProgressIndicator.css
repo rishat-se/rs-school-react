@@ -4,11 +4,17 @@
   font-size: 1.5rem;
   flex-direction: column;
   align-items: center;
-  padding: 10rem;
+  padding-block-start: 1rem;
+  padding-block-end: 2rem;
+  padding-inline: 2rem;
 }
 
 .progress-img__container {
-  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+  width: 22rem;
 }
 
 .progress-spinner {
