@@ -7,12 +7,17 @@ import ProgressIndicator from '../../components/ProgressIndicator/ProgressIndica
 import Modal from '../../components/Modal/Modal';
 import { hideModalContext } from '../../components/CardList/hideModalContext';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchValue } from '../../redux/searchValueSlice';
 
 function Home() {
-  const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+  // const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
   const [cards, setCards] = useState<CardData[] | null>(null);
   const [isPending, setIsPending] = useState(true);
   const [errorMessage, setErrorMessage] = useState({ isVisible: false, message: '' });
+  const searchValue = useSelector((state: RootState) => state.searchValue.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -44,7 +49,7 @@ function Home() {
   }
 
   function handleSearchValueSubmit(newSearchValue: string) {
-    setSearchValue(newSearchValue);
+    dispatch(setSearchValue(newSearchValue));
     localStorage.setItem('searchValue', newSearchValue);
   }
 
