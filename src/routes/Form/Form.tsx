@@ -11,9 +11,13 @@ import ImageFile from '../../components/FormComponents/ImageFile';
 import TextInput from '../../components/FormComponents/TextInput';
 import DateInput from '../../components/FormComponents/DateInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { addGameCard } from '../../redux/gameCardsSlice';
+import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Form() {
-  const [gameCardList, setGameCardList] = useState<GameCardData[]>([]);
+  const gameCards = useSelector((state: RootState) => state.gameCards.list);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -23,16 +27,11 @@ function Form() {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const file = URL.createObjectURL(data.imageFile[0]);
-    addGameCard({ ...data, imageFile: file });
+    const newGameCard = { id: uuidv4(), ...data, imageFile: file } as GameCardData;
+    dispatch(addGameCard(newGameCard));
     alert('Success: new game added');
     reset();
   };
-
-  function addGameCard(data: FieldValues) {
-    const newGameCard: GameCardData = { id: uuidv4(), ...data } as GameCardData;
-    const newGameCardList = gameCardList.concat([newGameCard as GameCardData]);
-    setGameCardList(newGameCardList);
-  }
 
   return (
     <div className="game-card__container">
@@ -54,7 +53,7 @@ function Form() {
         <ImageFile label="Load Thumbnail" name="imageFile" errors={errors} register={register} />
         <button>Create</button>
       </form>
-      <GameCardList gameCardList={gameCardList} />
+      <GameCardList gameCardList={gameCards} />
     </div>
   );
 }

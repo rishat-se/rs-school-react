@@ -27,11 +27,8 @@ function Home() {
         const response = await fetch(`${API_URL}/?name=${searchValue}`);
         if (!response.ok) throw new Error('no cards matching search value');
         const { results } = await response.json();
-        setIsPending(false);
         setCards(results);
       } catch (err) {
-        setIsPending(false);
-        setCards(null);
         setErrorMessage({
           isVisible: true,
           message: err instanceof Error ? err.message : String(err),
@@ -39,6 +36,8 @@ function Home() {
         setTimeout(() => {
           setErrorMessage({ isVisible: false, message: '' });
         }, 3000);
+      } finally {
+        setIsPending(false);
       }
     };
     fetchCards();
