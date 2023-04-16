@@ -1,7 +1,8 @@
 .error-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem 2rem;
-  max-width: 30rem;
-  text-align: center;
 }
 
 .error-msg h2 {
@@ -12,5 +13,4 @@
 
 .error-msg p {
   color: black;
-  text-align: center;
 }
