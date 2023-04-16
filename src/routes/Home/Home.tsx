@@ -19,7 +19,6 @@ function Home() {
 
   function handleSearchValueSubmit(newSearchValue: string) {
     dispatch(setSearchValue(newSearchValue));
-    localStorage.setItem('searchValue', newSearchValue);
   }
 
   return (
