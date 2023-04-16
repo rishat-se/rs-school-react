@@ -2,17 +2,11 @@ import React from 'react';
 import CardList from '../../components/CardList/CardList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ProgressIndicator from '../../components/ProgressIndicator/ProgressIndicator';
-import Modal from '../../components/Modal/Modal';
-import { hideModalContext } from '../../components/CardList/hideModalContext';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchValue } from '../../redux/searchValueSlice';
 import { useSearchByNameQuery } from '../../services/rickandmortyApi';
-import { CharactersDTO } from '../../types/CharactersDTO';
-import { CardData } from '../../types/CardData';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { SerializedError } from '@reduxjs/toolkit';
 import { getErrMessage } from '../../helpers/getErrMessage';
 
 function Home() {

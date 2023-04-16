@@ -1,48 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { CardData } from '../../types/CardData';
+import React from 'react';
 import FullCard from '../FullCard/FullCard';
 import Modal from '../Modal/Modal';
 import ReactDOM from 'react-dom';
 import ProgressIndicator from '../ProgressIndicator/ProgressIndicator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { useGetByIdQuery } from '../../services/rickandmortyApi';
+import { getErrMessage } from '../../helpers/getErrMessage';
 
 type CardModalProps = {
-  url: string;
+  id: string;
 };
 
-function CardModal({ url }: CardModalProps) {
-  const [isPending, setIsPending] = useState(true);
-  const [card, setCard] = useState<CardData | null>(null);
-  const [errorMessage, setErrorMessage] = useState({ isVisible: false, message: '' });
-
-  useEffect(() => {
-    const fetchCard = async () => {
-      setIsPending(true);
-      setCard(null);
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('no card matching search value');
-        const cardData = await response.json();
-        setIsPending(false);
-        setCard(cardData);
-      } catch (err) {
-        setIsPending(false);
-        setCard(null);
-        setErrorMessage({
-          isVisible: true,
-          message: err instanceof Error ? err.message : String(err),
-        });
-      }
-    };
-    fetchCard();
-  }, [url]);
+function CardModal({ id }: CardModalProps) {
+  const { data: card, isFetching, isError, error } = useGetByIdQuery(id);
+  const errMessage = getErrMessage(error);
 
   return ReactDOM.createPortal(
     <>
       <Modal>
-        {isPending && <ProgressIndicator />}
+        {isFetching && <ProgressIndicator />}
         {card && <FullCard card={card} />}
-        {errorMessage.isVisible && <ErrorMessage message={errorMessage.message} />}
+        {isError && errMessage && <ErrorMessage message={errMessage} />}
       </Modal>
     </>,
     document.body

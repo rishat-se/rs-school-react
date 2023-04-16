@@ -1,7 +1,5 @@
 import React from 'react';
 import './ErrorMessage.css';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { SerializedError } from '@reduxjs/toolkit';
 
 type ErrorMessageProps = {
   message: string;

@@ -11,16 +11,16 @@ type CardListProps = {
 
 function CardList({ cards }: CardListProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalUrl, setModalUrl] = useState('');
+  const [modalId, setModalId] = useState('1');
 
-  function showModal(url: string) {
+  function showModal(id: string) {
     setIsModalVisible(true);
-    setModalUrl(url);
+    setModalId(id);
   }
 
   function hideModal() {
     setIsModalVisible(false);
-    setModalUrl('');
+    setModalId('1');
   }
 
   return (
@@ -31,7 +31,7 @@ function CardList({ cards }: CardListProps) {
         ))}
       </ul>
       <hideModalContext.Provider value={hideModal}>
-        {isModalVisible && <CardModal url={modalUrl} />}
+        {isModalVisible && <CardModal id={modalId} />}
       </hideModalContext.Provider>
     </div>
   );
