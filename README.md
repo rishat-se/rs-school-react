@@ -11,7 +11,7 @@ cd rs-school-react
 ```
 
 ```
-git checkout redux
+git checkout ssr_ssg
 ```
 
 ```
