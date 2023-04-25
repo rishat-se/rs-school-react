@@ -1,61 +1,62 @@
 import React from 'react';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Outlet,
+  Route,
+  RouterProvider,
+  Routes,
+} from 'react-router-dom';
 import Home from './routes/Home/Home';
 import NotFound from './routes/NotFound/NotFound';
 import AboutUs from './routes/AboutUs/AboutUs';
-import NavBar from './routes/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import Form from './routes/Form/Form';
+import MainLayout from './layouts/MainLayout';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
-const router = createBrowserRouter([
-  {
-    element: (
-      <>
-        <NavBar />
-        <Outlet />
-      </>
-    ),
-    children: [
-      {
-        path: '/',
-        element: (
-          <div>
-            <Home />
-          </div>
-        ),
-      },
-      {
-        path: '/form',
-        element: (
-          <div>
-            <Form />
-          </div>
-        ),
-      },
-      {
-        path: '/aboutus',
-        element: (
-          <div>
-            <AboutUs />
-          </div>
-        ),
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: (
-      <>
-        <NotFound />
-      </>
-    ),
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     element: (
+//       <>
+//         <NavBar />
+//         <Outlet />
+//       </>
+//     ),
+//     children: [
+//       {
+//         path: '/',
+//         element: <Home />,
+//       },
+//       {
+//         path: '/form',
+//         element: <Form />,
+//       },
+//       {
+//         path: '/aboutus',
+//         element: <AboutUs />,
+//       },
+//     ],
+//   },
+//   {
+//     path: '*',
+//     element: <NotFound />,
+//   },
+// ]);
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="form" element={<Form />} />
+          <Route path="aboutus" element={<AboutUs />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Provider>
   );
 }
 

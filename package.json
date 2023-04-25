@@ -9,11 +9,14 @@
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.ts?(x)\" --fix",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "ssr:dev": "ts-node --esm server.ts"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "@types/express": "^4.17.17",
     "@types/uuid": "^9.0.1",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
@@ -43,6 +46,7 @@
     "lint-staged": "^13.2.0",
     "msw": "^1.2.1",
     "prettier": "^2.8.4",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vitest": "^0.29.3"
