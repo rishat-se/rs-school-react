@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import Home from './Home';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
-import { store } from '../../redux/store';
+import { store } from '../../redux/clientStore';
 
 describe('Home', () => {
   it('test of presence search input field', () => {

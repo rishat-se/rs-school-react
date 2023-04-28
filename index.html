@@ -8,6 +8,9 @@
   </head>
   <body>
     <div id="app" class="container"><!--ssr-outlet--></div>
+    <script>
+      window.__PRELOADED_STATE__ = ssrStateOutlet;
+    </script>
     <script type="module" src="/src/entry-client.tsx"></script>
     <!-- <div class="container" id="root"></div> -->
     <!-- <script type="module" src="/src/main.tsx"></script> -->

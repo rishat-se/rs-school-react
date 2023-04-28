@@ -5,7 +5,7 @@ import { describe, it } from 'vitest';
 import { GameCardData } from '../../components/GameCard/GameCard';
 import Form from './Form';
 import { Provider } from 'react-redux';
-import { store } from '../../redux/store';
+import { store } from '../../redux/clientStore';
 
 const mockCard: GameCardData = {
   id: 'e6baa828-8770-486a-91a2-e1f0e8f9cf38',
