@@ -5,7 +5,7 @@ import { rickandmortyApi } from '../services/rickandmortyApi';
 
 declare global {
   interface Window {
-    __PRELOADED_STATE__: {} | undefined;
+    __PRELOADED_STATE__: object | undefined;
   }
 }
 

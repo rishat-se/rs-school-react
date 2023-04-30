@@ -10,7 +10,10 @@
     "lint": "eslint \"src/**/*.ts?(x)\" --fix",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "ssr:dev": "ts-node --esm server.ts"
+    "ssr:dev": "vite-node server.ts",
+    "build:client": "vite build --outDir ./dist/client",
+    "build:server": "vite build --outDir ./dist/server --ssr ./src/entry-server.tsx",
+    "start": "node server.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -22,7 +25,8 @@
     "react-hook-form": "^7.43.9",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vite-node": "^0.30.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
