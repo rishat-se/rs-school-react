@@ -4,7 +4,7 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import Home from '../../routes/Home/Home';
 import { Provider } from 'react-redux';
-import { store } from '../../redux/clientStore';
+import { store } from '../../redux/store';
 
 describe('Searchbar', async () => {
   it('test of presence search input field', () => {
