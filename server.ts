@@ -41,29 +41,25 @@ async function createServer() {
       //    required, and provides efficient invalidation similar to HMR.
       const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
 
-      const { store } = await vite.ssrLoadModule('./src/redux/store.ts');
-      const { rickandmortyApi } = await vite.ssrLoadModule('./src/services/rickandmortyApi.ts');
-
-      if (url === '/') {
-        store.dispatch(rickandmortyApi.endpoints['searchByName'].initiate('', { force: true }));
-      }
-
-      await Promise.all(store.dispatch(rickandmortyApi.util.getRunningQueriesThunk()));
-      const preloadedState = JSON.stringify(store.getState());
-      // .replace(/</g, '\\u003c')
-      // .replace(/'/, "\\'");
-
       // 4. render the app HTML. This assumes entry-server.js's exported
       //     `render` function calls appropriate framework SSR APIs,
       //    e.g. ReactDOMServer.renderToString()
       const appHtml = await render(url);
 
+      const { store } = await vite.ssrLoadModule('./src/redux/store.ts');
+      const { rickandmortyApi } = await vite.ssrLoadModule('./src/services/rickandmortyApi.ts');
+
+      if (url === '/') {
+        store.dispatch(rickandmortyApi.endpoints['searchByName'].initiate('', { force: true }));
+        await Promise.all(store.dispatch(rickandmortyApi.util.getRunningQueriesThunk()));
+      }
+
+      const preloadedState = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
+
       // 5. Inject the app-rendered HTML into the template.
       const html = template
         .replace(`<!--ssr-outlet-->`, appHtml)
         .replace('ssrStateOutlet', preloadedState);
-
-      console.log(html);
 
       // console.log(html);
       // 6. Send the rendered HTML back.

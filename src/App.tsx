@@ -16,35 +16,6 @@ import MainLayout from './layouts/MainLayout';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
-// const router = createBrowserRouter([
-//   {
-//     element: (
-//       <>
-//         <NavBar />
-//         <Outlet />
-//       </>
-//     ),
-//     children: [
-//       {
-//         path: '/',
-//         element: <Home />,
-//       },
-//       {
-//         path: '/form',
-//         element: <Form />,
-//       },
-//       {
-//         path: '/aboutus',
-//         element: <AboutUs />,
-//       },
-//     ],
-//   },
-//   {
-//     path: '*',
-//     element: <NotFound />,
-//   },
-// ]);
-
 function App() {
   return (
     <Provider store={store}>

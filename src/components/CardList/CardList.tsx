@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
-import './CardList.css';
 import { CardData } from '../../types/CardData';
 import CardModal from '../CardModal/CardModal';
 import { hideModalContext } from './hideModalContext';
@@ -18,6 +17,7 @@ function CardList({ cards }: CardListProps) {
     setModalId(id);
   }
 
+  //
   function hideModal() {
     setIsModalVisible(false);
     setModalId('1');

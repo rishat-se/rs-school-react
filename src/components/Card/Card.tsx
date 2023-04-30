@@ -1,5 +1,4 @@
 import React from 'react';
-import './Card.css';
 import { CardData } from '../../types/CardData';
 
 type CardProps = {

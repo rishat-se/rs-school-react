@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './SearchBar.css';
 
 type SearchBarProps = {
   searchValue: string;

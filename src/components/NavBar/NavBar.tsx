@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LocationHeading from '../LocationHeading/LocationHeading';
-import './NavBar.css';
 
 function NavBar() {
   return (
