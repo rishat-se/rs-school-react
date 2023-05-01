@@ -35,7 +35,7 @@ After starting app you can open it on http://localhost:4173/
 or in development mode:
 
 ```
-npm run dev
+npm run ssr:dev
 ```
 
 After starting app you can open it on http://localhost:5173/
