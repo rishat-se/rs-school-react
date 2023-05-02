@@ -30,24 +30,25 @@ async function createServer() {
       }
 
       const preloadedState = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
-      const preloadedStateScript = `<script>
-          window.__PRELOADED_STATE__ = ${preloadedState};
-        </script>`;
+      const preloadedStateScript = `window.__PRELOADED_STATE__ = ${preloadedState}`;
 
       const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
 
       let didError = false;
 
       const stream = await render(url, {
+        bootstrapScriptContent: preloadedStateScript,
         bootstrapModules: ['/src/entry-client.tsx'],
         onShellReady() {
           res.statusCode = didError ? 500 : 200;
           res.setHeader('Content-type', 'text/html');
           stream.pipe(res);
           res.write(vitePluginTransform);
-          res.write(preloadedStateScript);
         },
-        onError(x) {
+        onAllReady() {
+          res.end();
+        },
+        onError(x: unknown) {
           didError = true;
           console.error(x);
         },

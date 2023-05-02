@@ -17,7 +17,6 @@ function CardList({ cards }: CardListProps) {
     setModalId(id);
   }
 
-  //
   function hideModal() {
     setIsModalVisible(false);
     setModalId('1');
