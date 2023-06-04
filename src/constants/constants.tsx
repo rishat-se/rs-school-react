@@ -3,3 +3,5 @@ export const paths: { [key: string]: string } = {
   ['/form']: 'Form',
   ['/aboutus']: 'About Us',
 };
+
+export const API_URL = 'https://rickandmortyapi.com/api/character';

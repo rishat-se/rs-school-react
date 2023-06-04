@@ -6,6 +6,6 @@ import App from './App';
 describe('App', () => {
   it('test of presence of logo', () => {
     render(<App />);
-    expect(screen.getByText(/RS-Shool React App/i)).toBeInTheDocument();
+    expect(screen.getByText(/RS-School React App/i)).toBeInTheDocument();
   });
 });

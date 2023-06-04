@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
 import Home from './Home';
+import userEvent from '@testing-library/user-event';
 
 describe('Home', () => {
   it('test of presence search input field', () => {
@@ -9,8 +10,32 @@ describe('Home', () => {
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
   });
 
-  it('test of presence card list', () => {
+  it('test presence of 20 cards', async () => {
     render(<Home />);
-    expect(screen.getByRole('list', { name: 'card-list' })).toBeInTheDocument();
+    expect(await screen.findAllByRole('listitem', { name: 'card' })).toHaveLength(20);
+  });
+
+  it('test first card click, modal appearance and disappearence ', async () => {
+    render(<Home />);
+    const user = userEvent.setup();
+    const cards = await screen.findAllByRole('listitem', { name: 'card' });
+    await user.click(cards[0]);
+    expect(await screen.findByRole('article', { name: 'fullcard' })).toBeInTheDocument();
+    const closeButton = await screen.findByRole('button', { name: '✖' });
+    await user.click(closeButton);
+    await waitFor(() =>
+      expect(screen.queryByRole('article', { name: 'fullcard' })).not.toBeInTheDocument()
+    );
+    await user.click(cards[1]);
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
+  });
+
+  it('test typing in aaaaa search input field typing and error appearance', async () => {
+    const user = userEvent.setup();
+    render(<Home />);
+    const searchInput = screen.getByRole('searchbox');
+    await user.type(searchInput, 'aaaaa');
+    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
   });
 });

@@ -6,7 +6,7 @@ import './NavBar.css';
 function NavBar() {
   return (
     <header className="nav-bar">
-      <h1 className="nav-items">RS-Shool React App</h1>
+      <h1 className="nav-items">RS-School React App</h1>
       <LocationHeading className="nav-items" />
       <nav>
         <li className="nav-link">

@@ -1,0 +1,37 @@
+.fullcard {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  list-style: none;
+}
+
+.fullcard img {
+  width: 320px;
+  margin: 1.5rem;
+}
+
+.fullcard > ul {
+  margin: 1.5rem;
+}
+
+.fullcard li {
+  list-style: none;
+}
+
+.fullcard span {
+  color: #4285f4;
+}
+
+.episode__list {
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: repeat(auto-fit, 1.5rem);
+  justify-items: end;
+  justify-content: end;
+}
+
+@media screen and (min-width: 40rem) {
+  .fullcard {
+    flex-direction: row;
+  }
+}

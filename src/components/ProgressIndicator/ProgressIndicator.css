@@ -1,0 +1,38 @@
+.progress-indicator {
+  color: rgb(31, 141, 68);
+  display: flex;
+  font-size: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: 1rem;
+  padding-block-end: 2rem;
+  padding-inline: 2rem;
+}
+
+.progress-img__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+  width: 22rem;
+}
+
+.progress-spinner {
+  background-color: rgb(31, 141, 68);
+  width: 10rem;
+  height: 1rem;
+  animation-name: Rotate;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes Rotate {
+  from {
+    background-color: rgb(31, 141, 68);
+    transform: rotate(0);
+  }
+  to {
+    background-color: rgb(167, 203, 84);
+    transform: rotate(17turn);
+  }
+}
