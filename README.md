@@ -11,45 +11,23 @@ cd rs-school-react
 ```
 
 ```
-git checkout redux
+git checkout ssr_ssg
 ```
 
 ```
 npm install
 ```
 
-## Build application
-
-```
-npm run build
-```
-
 ## Running application
 
 ```
-npm run preview
-```
-
-After starting app you can open it on http://localhost:4173/
-
-or in development mode:
-
-```
-npm run dev
+npm run start
 ```
 
 After starting app you can open it on http://localhost:5173/
 
 ## Running test
 
-with coverage report:
-
 ```
-npm run test:coverage
-```
-
-in watch mode without coverage report:
-
-```
-npm run test
+npm run cy:e2e
 ```

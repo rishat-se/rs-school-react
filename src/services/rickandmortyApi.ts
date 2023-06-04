@@ -1,7 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_API_URL } from '../constants/constants';
 import { CharactersDTO } from '../types/CharactersDTO';
 import { CardData } from '../types/CardData';
+
+import { buildCreateApi, coreModule, reactHooksModule } from '@reduxjs/toolkit/query/react';
+
+const createApi = buildCreateApi(
+  coreModule(),
+  reactHooksModule({ unstable__sideEffectsInRender: true })
+);
 
 export const rickandmortyApi = createApi({
   reducerPath: 'rickandmortyApi',
