@@ -1,0 +1,15 @@
+.notfound{
+  color: black;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notfound h1{
+  font-size: 10rem;
+}
+
+.notfound p{
+  padding-block: 1rem;
+}

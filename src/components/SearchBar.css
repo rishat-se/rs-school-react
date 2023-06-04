@@ -1,0 +1,20 @@
+.search-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  column-gap: 1rem;
+}
+
+.search-bar form {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.search-bar form * {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.search-bar input {
+  width: 12rem; 
+}

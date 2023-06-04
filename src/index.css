@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1 rem;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #eae9ee;
+}
+
+.container {
+  max-width: 87.5rem;
+  margin-block-start: 1rem;
+  margin-block-end: 7rem;
+  margin-inline: 1.5rem;
+}

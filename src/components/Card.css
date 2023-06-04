@@ -1,0 +1,16 @@
+.card {
+  background-color: white;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.card li {
+  list-style: none;
+}
+.card span {
+  color:#4285f4;
+}
+
+.card img {
+  width: 290px;
+}
