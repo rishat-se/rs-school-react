@@ -3,20 +3,34 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import Home from './Home';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 describe('Home', () => {
   it('test of presence search input field', () => {
-    render(<Home />);
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
   });
 
   it('test presence of 20 cards', async () => {
-    render(<Home />);
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     expect(await screen.findAllByRole('listitem', { name: 'card' })).toHaveLength(20);
   });
 
   it('test first card click, modal appearance and disappearence ', async () => {
-    render(<Home />);
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     const user = userEvent.setup();
     const cards = await screen.findAllByRole('listitem', { name: 'card' });
     await user.click(cards[0]);
@@ -32,7 +46,11 @@ describe('Home', () => {
 
   it('test typing in aaaaa search input field typing and error appearance', async () => {
     const user = userEvent.setup();
-    render(<Home />);
+    render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     const searchInput = screen.getByRole('searchbox');
     await user.type(searchInput, 'aaaaa');
     await user.click(screen.getByRole('button', { name: 'Search' }));

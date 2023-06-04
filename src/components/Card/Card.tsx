@@ -4,12 +4,12 @@ import { CardData } from '../../types/CardData';
 
 type CardProps = {
   card: CardData;
-  handleCardClick: (url: string) => void;
+  handleCardClick: (id: string) => void;
 };
 
 function Card({ card, handleCardClick }: CardProps) {
   return (
-    <li onClick={() => handleCardClick(card.url)} className="card" aria-label="card">
+    <li onClick={() => handleCardClick(card.id)} className="card" aria-label="card">
       <img alt={`${card.name} image`} src={card.image} />
       <ul>
         <li aria-label="character-property">

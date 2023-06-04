@@ -5,3 +5,4 @@ export const paths: { [key: string]: string } = {
 };
 
 export const API_URL = 'https://rickandmortyapi.com/api/character';
+export const BASE_API_URL = 'https://rickandmortyapi.com/api/';

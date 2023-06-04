@@ -4,6 +4,8 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import { GameCardData } from '../../components/GameCard/GameCard';
 import Form from './Form';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 const mockCard: GameCardData = {
   id: 'e6baa828-8770-486a-91a2-e1f0e8f9cf38',
@@ -20,30 +22,50 @@ const mockCard: GameCardData = {
 
 describe('Form', () => {
   it('test of presence of Game text input', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByLabelText('Game:')).toBeInTheDocument();
   });
 
   it('test presence of 3 text inputs', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getAllByRole('textbox')).toHaveLength(3);
   });
 
   it('test presence of First Release input', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByLabelText('First Release:')).toBeInTheDocument();
   });
 
   it('test create button click with empty input fields', async () => {
     const user = userEvent.setup();
-    const { container } = render(<Form />);
+    const { container } = render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     await user.click(screen.getByRole('button', { name: 'Create' }));
     expect(container.getElementsByClassName('error-msg')).toHaveLength(8);
   });
 
   it('test create button click with filled input fields', async () => {
     const user = userEvent.setup();
-    const { container } = render(<Form />);
+    const { container } = render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
 
     const gameName: HTMLInputElement = screen.getByLabelText(/game:/i);
     await user.type(gameName, mockCard.gameName);
