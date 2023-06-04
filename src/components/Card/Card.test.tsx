@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
 import Card from './Card';
-import cards from '../data/cards';
+import cards from '../../data/cards';
 
 describe('Card', () => {
   it('test presence of 6 list items', () => {
